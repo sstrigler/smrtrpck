@@ -20,7 +20,7 @@
         <label for="gearItemWeight">Weight:</label>
         <input type="number" id="gearItemWeight" class="form-control" v-model.number="newGearItem.weight">
       </div>
-      <input type="submit" class="btn btn-primary" value="Add Item">
+      <input type="submit" class="btn btn-default btn-primary" value="Add Item">
     </form>
   </div>
 </template>
@@ -67,12 +67,10 @@ h1, h2 {
 }
 
 ul {
-  //list-style-type: none;
   padding: 0;
 }
 
 li {
-  //display: inline-block;
   margin: 0 10px;
 }
 
