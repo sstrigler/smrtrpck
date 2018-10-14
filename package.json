@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "hoodie": "^28.2.6",
+    "pouchdb": "^7.0.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
