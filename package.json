@@ -1,0 +1,16 @@
+{
+  "name": "smrtrpck-hoodie",
+  "version": "1.0.0",
+  "description": "Just some generic hoodie server so far",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "hoodie"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "hoodie": "^28.2.6"
+  }
+}
