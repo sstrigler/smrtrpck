@@ -1,4 +1,6 @@
+import '@babel/polyfill'
 import Vue from 'vue'
+import './plugins/bootstrap-vue'
 import App from './App.vue'
 import VueHoodie from 'vue-hoodie';
 Vue.use(VueHoodie);
