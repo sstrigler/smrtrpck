@@ -6,12 +6,13 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start": "hoodie"
+    "start-hoodie": "hoodie --port 8084"
   },
   "dependencies": {
     "hoodie": "^28.2.6",
     "pouchdb": "^7.0.0",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-hoodie": "git+https://github.com/SergeyRyzhov/vue-hoodie.git"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
@@ -42,5 +43,8 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "hoodie": {
+    "adminPassword": "test-pw"
+  }
 }
