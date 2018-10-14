@@ -5,9 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "hoodie"
   },
   "dependencies": {
+    "hoodie": "^28.2.6",
     "vue": "^2.5.17"
   },
   "devDependencies": {
