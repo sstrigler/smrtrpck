@@ -1,5 +1,7 @@
 # smrtrpck
 
+> be smarter when you pack
+
 ## Project setup
 ```
 yarn install
