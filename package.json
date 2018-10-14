@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "hoodie"
+    "start": "hoodie --address 0.0.0.0 --port 8080"
   },
   "keywords": [],
   "author": "",
