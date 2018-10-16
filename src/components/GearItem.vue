@@ -1,8 +1,12 @@
 <template>
-  <li>
-    {{gearItem.name}} - {{gearItem.description}} -
-    <input type="number" v-model.number="gearItem.weight" @input="$emit('updated', gearItem)">
-    <button class="btn btn-sm btn-danger" @click="$emit('remove', gearItem)">X</button>
+  <li class="nav-item">
+    <a class="nav-link" href="#">
+      <span data-feather="file-text"></span>
+
+      {{gearItem.name}}</a>
+    <span>{{gearItem.weight}}</span>
+    <span>{{gearItem.description}}</span>
+    <a class="btn btn-sm btn-danger" @click="$emit('remove', gearItem)">x</a>
   </li>
 </template>
 

@@ -1,22 +1,15 @@
 <template>
-  <div>
-    <h2>Your Inventory ({{gearItems.length}}/{{totalGearWeight}})</h2>
-    <NewGearItemForm
-      @newGearItem="addNewGearItem"
-      />
-
-    <ul
-      v-if="gearItems.length">
-      <GearItem
-        v-for="gearItem in gearItems"
-        :key="gearItem.id"
-        :gearItem="gearItem"
-        @remove="removeGearItem"
-        @updated="updateGearItem"
-        />
-    </ul>
-    <p v-else>Your inventory is empty, best time to start adding gear!</p>
-  </div>
+<ul class="nav flex-column"
+    v-if="gearItems.length">
+  <GearItem
+    v-for="gearItem in gearItems"
+    :key="gearItem.id"
+    :gearItem="gearItem"
+    @remove="removeGearItem"
+    @updated="updateGearItem"
+    />
+</ul>
+<p v-else>Your inventory is empty, best time to start adding gear!</p>
 </template>
 
 <script>
@@ -25,7 +18,6 @@ import NewGearItemForm from './NewGearItemForm.vue'
 import GearItem from './GearItem.vue'
 
 export default {
-  name: 'app',
   components: {
     NewGearItemForm,
     GearItem
