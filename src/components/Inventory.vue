@@ -9,7 +9,6 @@
     @updated="updateGearItem"
     />
 </ul>
-<p v-else>Your inventory is empty, best time to start adding gear!</p>
 </template>
 
 <script>
