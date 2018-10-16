@@ -55,7 +55,6 @@ export default {
         this.gearListStore.updateOrAdd(this.list);
     },
     setActive() {
-      console.log("active");
       this.isActive = true
     }
   },
