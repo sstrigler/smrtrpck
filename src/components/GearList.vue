@@ -1,6 +1,6 @@
 <template>
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div :class="{ 'd-none': !isActive }">
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">
       <span @click="toggleEditable" v-show="!editable">{{list.name}}</span>
       <input type="text"
@@ -25,7 +25,7 @@
     v-for="category in list.categories"
     :key="category.name"
     :category="category"/>
-</main>
+</div>
 </template>
 
 <script>
@@ -37,7 +37,8 @@ export default {
   },
   data() {
     return {
-      editable: false
+      editable: false,
+      isActive: false
     }
   },
   props: {
@@ -52,6 +53,10 @@ export default {
     },
     updateList() {
         this.gearListStore.updateOrAdd(this.list);
+    },
+    setActive() {
+      console.log("active");
+      this.isActive = true
     }
   },
   created() {

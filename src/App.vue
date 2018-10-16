@@ -15,14 +15,14 @@
       <div class="sidebar-sticky">
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Lists</span>
+          <span>Lists</span> <a @click="addNewList" href="#">(+)</a>
           <a class="d-flex align-items-center text-muted" href="#">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item" v-for="list in lists">
-            <a class="nav-link" href="#">
+            <a class="nav-link" :class="{ active: currentList === list }" href="#" @click="setCurrentList(list)">
               <span data-feather="file-text"></span>
               {{list.name}}
             </a>
@@ -38,9 +38,12 @@
         <Inventory/>
       </div>
     </nav>
-    <GearList v-for="list in lists"
-              :key="list.id"
-              :list="list"/>
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <GearList v-for="(list, idx) in lists"
+                :key="list._id"
+                :isActive="idx === 0"
+                :list="list"/>
+    </main>
   </div>
 </div>
 </template>
@@ -59,19 +62,33 @@ export default {
     this.gearListStore.findAll().then(
       lists => {
         this.lists = lists;
-        if (this.lists.length === 0) {
-          let newList = {name: "New List"};
-          this.gearListStore.add(newList).then(
-            list => {
-              this.lists.push(list);
-            }
-          )
-        }
+        if (this.lists.length === 0) addNewList();
       }
     );
+    this.$hoodie.store.find('smrtrpck').then(
+      smrtrpck => {
+        if (smrtrpck.lastList)
+          this.setCurrentList(smrtrpck.lastList);
+      });
   },
   data: function() {
-    return {lists: []}
+    return {lists: [],
+            currentList: null}
+  },
+  methods: {
+    addNewList() {
+      let newList = {name: "New List"};
+      this.gearListStore.add(newList).then(
+        list => {
+          this.lists.push(list);
+          this.setCurrentList(list);
+        }
+      )
+    },
+    setCurrentList(list) {
+      this.$children.forEach(child => child.isActive = child.list === list);
+      this.$hoodie.store.add('smrtrpck', {lastList: list});
+    }
   }
 }
 </script>
