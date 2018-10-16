@@ -65,7 +65,7 @@ export default {
           smrtrpck => {
             this.smrtrpck = smrtrpck
             this.lists = lists;
-            if (this.lists.length === 0) addNewList();
+            if (this.lists.length === 0) this.addNewList();
           });
       }
     );
