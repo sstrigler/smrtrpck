@@ -22,7 +22,7 @@
         </h6>
         <ul class="nav flex-column mb-2">
           <li class="nav-item" v-for="list in lists">
-            <a class="nav-link" :class="{ active: currentList === list }" href="#" @click="setCurrentList(list)">
+            <a class="nav-link" :class="{ active: currentList === list }" href="#" @click="setCurrentList(list._id)">
               <span data-feather="file-text"></span>
               {{list.name}}
             </a>
@@ -61,19 +61,24 @@ export default {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
     this.gearListStore.findAll().then(
       lists => {
-        this.lists = lists;
-        if (this.lists.length === 0) addNewList();
+        this.$hoodie.store.find({_id: 'smrtrpck'}).then(
+          smrtrpck => {
+            this.smrtrpck = smrtrpck
+            this.lists = lists;
+            if (this.lists.length === 0) addNewList();
+          });
       }
     );
-    this.$hoodie.store.find('smrtrpck').then(
-      smrtrpck => {
-        if (smrtrpck.lastList)
-          this.setCurrentList(smrtrpck.lastList);
-      });
+  },
+  updated: function() {
+    this.setCurrentList(this.smrtrpck.lastList)
   },
   data: function() {
-    return {lists: [],
-            currentList: null}
+    return {
+      lists: [],
+      currentList: null,
+      smrtrpck: {_id: 'smrtrpck'}
+    }
   },
   methods: {
     addNewList() {
@@ -85,9 +90,15 @@ export default {
         }
       )
     },
-    setCurrentList(list) {
-      this.$children.forEach(child => child.isActive = child.list === list);
-      this.$hoodie.store.add('smrtrpck', {lastList: list});
+    setCurrentList(list_id) {
+      this.$children.forEach(child =>
+                             {
+                               if (child.list)
+                                 child.isActive = child.list._id === list_id});
+      if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== list_id) {
+        this.smrtrpck.lastList = list_id;
+        this.$hoodie.store.update(this.smrtrpck);
+      }
     }
   }
 }
