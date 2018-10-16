@@ -3,6 +3,7 @@
     <h2>Your Inventory ({{gearItems.length}}/{{totalGearWeight}})</h2>
     <NewGearItemForm
       v-model="newGearItem"
+      @newGearItem="addNewGearItem"
       />
 
     <ul
@@ -45,9 +46,9 @@ export default {
     }
   },
   methods: {
-    addNewGearItem () {
-      this.gearItemStore.add(this.newGearItem);
-      this.gearItems.push(this.newGearItem);
+    addNewGearItem (newGearItem) {
+      this.gearItemStore.add(newGearItem);
+      this.gearItems.push(newGearItem);
       this.newGearItem = {};
     },
     removeGearItem (toRemove) {

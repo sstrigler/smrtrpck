@@ -22,6 +22,11 @@ export default {
     return {
       newGearItem: {}
     }
+  },
+  methods: {
+    addNewGearItem() {
+      this.$emit('newGearItem', this.newGearItem);
+    }
   }
 }
 </script>
