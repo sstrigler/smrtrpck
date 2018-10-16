@@ -21,10 +21,10 @@
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item">
+          <li class="nav-item" v-for="list in lists">
             <a class="nav-link" href="#">
               <span data-feather="file-text"></span>
-              New list
+              {{list.name}}
             </a>
           </li>
         </ul>
@@ -38,7 +38,9 @@
         <Inventory/>
       </div>
     </nav>
-    <GearList />
+    <GearList v-for="list in lists"
+              :key="list.id"
+              :list="list"/>
   </div>
 </div>
 </template>
@@ -51,6 +53,25 @@ export default {
   components: {
     GearList,
     Inventory
+  },
+  created: function () {
+    this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
+    this.gearListStore.findAll().then(
+      lists => {
+        this.lists = lists;
+        if (this.lists.length === 0) {
+          let newList = {name: "New List"};
+          this.gearListStore.add(newList).then(
+            list => {
+              this.lists.push(list);
+            }
+          )
+        }
+      }
+    );
+  },
+  data: function() {
+    return {lists: []}
   }
 }
 </script>
