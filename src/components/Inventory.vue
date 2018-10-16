@@ -2,7 +2,6 @@
   <div>
     <h2>Your Inventory ({{gearItems.length}}/{{totalGearWeight}})</h2>
     <NewGearItemForm
-      v-model="newGearItem"
       @newGearItem="addNewGearItem"
       />
 
@@ -41,8 +40,7 @@ export default {
   },
   data () {
     return {
-      gearItems: [],
-      newGearItem: {}
+      gearItems: []
     }
   },
   methods: {
