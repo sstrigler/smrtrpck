@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>Smrtrpck</h1>
-    <small>for when you want to be smart when packing your pack</small>
+    <small>for when you want to pack smarter</small>
     <Inventory/>
   </div>
 </template>
