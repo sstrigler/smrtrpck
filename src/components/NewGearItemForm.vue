@@ -25,8 +25,10 @@ export default {
   },
   methods: {
     addNewGearItem() {
-      this.$emit('newGearItem', {...this.newGearItem});
-      this.newGearItem = {};
+      if (this.newGearItem.name && this.newGearItem.weight) {
+        this.$emit('newGearItem', {...this.newGearItem});
+        this.newGearItem = {};
+      }
     }
   }
 }
