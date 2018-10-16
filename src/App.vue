@@ -59,15 +59,18 @@ export default {
   },
   created: function () {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
-    this.gearListStore.findAll().then(
-      lists => {
-        this.$hoodie.store.find({_id: 'smrtrpck'}).then(
-          smrtrpck => {
-            this.smrtrpck = smrtrpck
+    this.$hoodie.store.find({_id: 'smrtrpck'}).then(
+      smrtrpck => {
+        this.smrtrpck = smrtrpck
+        this.gearListStore.findAll().then(
+          lists => {
             this.lists = lists;
             if (this.lists.length === 0) this.addNewList();
           });
       }
+    ).catch(error =>
+            this.$hoodie.store.add(this.smrtrpck).then(
+              smrtrpck => this.addNewList())
     );
   },
   updated: function() {
