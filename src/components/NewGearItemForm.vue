@@ -2,11 +2,11 @@
   <form class="form-inline" v-on:submit.prevent="addNewGearItem">
       <div class="form-group">
         <label for="gearItemName">Name:</label>
-        <input type="text" id="gearItemName" class="form-control" v-model="newGearItem.name">
+        <input type="text" id="gearItemName" placeholder="New Gear Item" class="form-control" v-model.trim="newGearItem.name">
       </div>
       <div class="form-group">
         <label for="gearItemDescription">Description:</label>
-        <input type="text" id="gearItemDescription" class="form-control" v-model="newGearItem.description">
+        <input type="text" id="gearItemDescription" class="form-control" v-model.trim="newGearItem.description">
       </div>
       <div class="form-group">
         <label for="gearItemWeight">Weight:</label>
