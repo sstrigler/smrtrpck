@@ -47,7 +47,6 @@ export default {
     addNewGearItem (newGearItem) {
       this.gearItemStore.add(newGearItem);
       this.gearItems.push(newGearItem);
-      this.newGearItem = {};
     },
     removeGearItem (toRemove) {
       this.gearItemStore.remove(toRemove);
