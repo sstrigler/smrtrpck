@@ -25,7 +25,8 @@ export default {
   },
   methods: {
     addNewGearItem() {
-      this.$emit('newGearItem', this.newGearItem);
+      this.$emit('newGearItem', {...this.newGearItem});
+      this.newGearItem = {};
     }
   }
 }
