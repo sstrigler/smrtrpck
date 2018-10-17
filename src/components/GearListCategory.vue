@@ -1,6 +1,14 @@
 <template>
 <div class="gear-list-category">
-  <h2>{{name}}</h2>
+  <h2>
+    <span @click="toggleEditable" v-show="!editable">{{category.name}}</span>
+    <input type="text"
+           class="form-control"
+           v-show="editable"
+           v-model:trim="d_name"
+           @blur="updateCategoryName"
+           />
+  </h2>
   <div class="table-responsive">
     <table class="table table-striped table-sm">
       <thead>
@@ -16,7 +24,8 @@
       </thead>
       <tbody>
         <tr
-          v-for="item in items">
+          v-for="item in category.items"
+          :key="item.name">
           <td>[pic/tbd]</td>
           <td>{{item.name}}</td>
           <td>{{item.description}}</td>
@@ -44,20 +53,32 @@
 export default {
   computed: {
     totalWeight () {
-      return this.items.reduce((sum, item) => sum + item.weight, 0)
+      return this.category.items.reduce((sum, item) => sum + item.weight, 0)
     },
     totalQty () {
-      return this.items.reduce((sum, item) => sum + item.qty, 0)
+      return this.category.items.reduce((sum, item) => sum + item.qty, 0)
+    }
+  },
+  data() {
+    return {
+      d_name: this.category.name,
+      editable: false
+    }
+  },
+  methods: {
+    toggleEditable() {
+      this.editable=!this.editable;
+    },
+    updateCategoryName() {
+      this.editable = false;
+      this.category.name = this.d_name;
+      this.$emit('updateCategory');
     }
   },
   props: {
-    name: {
-      type: String,
-      default: "New Category"
-    },
-    items: {
-      type: Array,
-      default: function() { return []}
+    category: {
+      type: Object,
+      require: true
     }
   }
 }

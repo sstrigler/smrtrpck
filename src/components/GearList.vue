@@ -8,7 +8,8 @@
              v-show="editable"
              v-model.trim="list.name"
              @input="updateList"
-             @blur="toggleEditable"/></h1>
+             @blur="toggleEditable"/>
+    </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary">Share</button>
@@ -24,7 +25,9 @@
   <GearListCategory
     v-for="category in list.categories"
     :key="category.name"
-    :category="category"/>
+    :category="category"
+    @updateCategory="updateList"
+    />
 </div>
 </template>
 
@@ -51,18 +54,18 @@ export default {
     toggleEditable() {
       this.editable=!this.editable;
     },
-    updateList() {
-        this.gearListStore.updateOrAdd(this.list);
-    },
     setActive() {
       this.isActive = true
+    },
+    updateList() {
+      this.gearListStore.updateOrAdd(this.list);
     }
   },
   created() {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
     if (!this.list.categories) {
       this.list.categories = [];
-      this.list.categories.push({});
+      this.list.categories.push({name: "New Category", items: []});
     }
   }
 }
