@@ -35,29 +35,35 @@
           <td>{{item.unit}}</td>
           <td>{{item.qty}}</td>
         </tr>
+      </tbody>
+      <tfoot>
         <tr>
-          <td />
-          <td />
-          <td />
-          <td />
+          <td colspan="4">
+            <a href="#"
+               @click="addNewItem">Add new item</a>
+          </td>
           <td>{{totalWeight}}</td>
           <td />
           <td>{{totalQty}}</td>
         </tr>
-      </tbody>
+      </tfoot>
     </table>
   </div>
 </div>
 </template>
 
 <script>
+function toNum(any) {
+  if (isNaN(any)) return 0;
+}
+
 export default {
   computed: {
     totalWeight () {
-      return this.category.items.reduce((sum, item) => sum + item.weight, 0)
+      return this.category.items.reduce((sum, item) => sum + toNum(item.weight), 0)
     },
     totalQty () {
-      return this.category.items.reduce((sum, item) => sum + item.qty, 0)
+      return this.category.items.reduce((sum, item) => sum + toNum(item.qty), 0)
     }
   },
   data() {
@@ -67,6 +73,9 @@ export default {
     }
   },
   methods: {
+    addNewItem() {
+      this.category.items.push({});
+    },
     toggleEditable() {
       this.editable=!this.editable;
     },
