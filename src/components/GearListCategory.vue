@@ -1,7 +1,7 @@
 <template>
 <div class="gear-list-category">
   <h2>
-    <span @click="toggleEditable" v-show="!editable">{{category.name}}</span>
+    <span @click="toggleEditable" title="Click to edit" v-show="!editable">{{category.name}}</span>
     <input type="text"
            class="form-control"
            v-show="editable"

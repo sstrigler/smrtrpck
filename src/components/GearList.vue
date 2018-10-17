@@ -2,7 +2,7 @@
 <div :class="{ 'd-none': !isActive }">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">
-      <span @click="toggleEditable" v-show="!editable">{{list.name}}</span>
+      <span @click="toggleEditable" title="Click to edit" v-show="!editable">{{list.name}}</span>
       <input type="text"
              class="form-control"
              v-show="editable"
