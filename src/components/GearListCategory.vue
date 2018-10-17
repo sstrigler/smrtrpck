@@ -6,6 +6,7 @@
            class="form-control"
            v-show="editable"
            v-model.trim="d_name"
+           @keypress.enter="updateCategoryName"
            @blur="updateCategoryName"
            />
   </h2>
@@ -71,8 +72,10 @@ export default {
     },
     updateCategoryName() {
       this.editable = false;
-      this.category.name = this.d_name;
-      this.$emit('updateCategory');
+      if (this.category.name != this.d_name) {
+        this.category.name = this.d_name;
+        this.$emit('updateCategory');
+      }
     }
   },
   props: {

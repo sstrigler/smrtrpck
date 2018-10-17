@@ -8,6 +8,7 @@
              v-show="editable"
              v-model.trim="list.name"
              @input="updateList"
+             @keypress.enter="toggleEditable"
              @blur="toggleEditable"/>
     </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
