@@ -28,6 +28,7 @@
     :category="category"
     @updateCategory="updateList"
     />
+  <a href="#" @click="addNewCategory">Add new category</a>
 </div>
 </template>
 
@@ -51,11 +52,15 @@ export default {
     }
   },
   methods: {
-    toggleEditable() {
-      this.editable=!this.editable;
+    addNewCategory() {
+      this.list.categories.push({name: "New Category", items: []});
+      this.updateList();
     },
     setActive() {
       this.isActive = true
+    },
+    toggleEditable() {
+      this.editable=!this.editable;
     },
     updateList() {
       this.gearListStore.updateOrAdd(this.list);
@@ -65,7 +70,7 @@ export default {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
     if (!this.list.categories) {
       this.list.categories = [];
-      this.list.categories.push({name: "New Category", items: []});
+      this.addNewCategory();
     }
   }
 }
