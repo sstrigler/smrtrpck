@@ -2,14 +2,14 @@
 <div :class="{ 'd-none': !isActive }">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">
-      <span @click="toggleEditable" title="Click to edit" v-show="!editable">{{list.name}}</span>
+      <span @click="editable = true" title="Click to edit" v-show="!editable">{{list.name}}</span>
       <input type="text"
              class="form-control"
              v-show="editable"
              v-model.trim="list.name"
              @input="updateList"
-             @keypress.enter="toggleEditable"
-             @blur="toggleEditable"/>
+             @keypress.enter="editable = false"
+             @blur="editable = false"/>
     </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
@@ -59,9 +59,6 @@ export default {
     },
     setActive() {
       this.isActive = true
-    },
-    toggleEditable() {
-      this.editable=!this.editable;
     },
     updateList() {
       this.gearListStore.updateOrAdd(this.list);
