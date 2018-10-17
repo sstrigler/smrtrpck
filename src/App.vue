@@ -21,7 +21,10 @@
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
-          <li class="nav-item" v-for="list in lists">
+          <li
+            class="nav-item"
+            v-for="list in lists"
+            :key="list._id">
             <a class="nav-link" :class="{ active: currentList === list }" href="#" @click="setCurrentList(list._id)">
               <span data-feather="file-text"></span>
               {{list.name}}
@@ -68,9 +71,9 @@ export default {
             if (this.lists.length === 0) this.addNewList();
           });
       }
-    ).catch(error =>
+    ).catch(() =>
             this.$hoodie.store.add(this.smrtrpck).then(
-              smrtrpck => this.addNewList())
+              () => this.addNewList())
     );
   },
   updated: function() {
