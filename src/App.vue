@@ -112,42 +112,11 @@ export default {
 
 
 <style>
-/*
- * Base structure
- */
-
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
-}
-
-/*
- * Global add-ons
- */
-
-.sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  padding: 0;
-}
-
-li {
-  margin: 0 10px;
 }
 
 a {
