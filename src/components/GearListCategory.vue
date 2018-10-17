@@ -5,7 +5,7 @@
     <input type="text"
            class="form-control"
            v-show="editable"
-           v-model:trim="d_name"
+           v-model.trim="d_name"
            @blur="updateCategoryName"
            />
   </h2>
