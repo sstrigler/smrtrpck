@@ -2,14 +2,12 @@
 <div :class="{ 'd-none': !isActive }">
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">
-      <span @click="editable = true" title="Click to edit" v-show="!editable">{{list.name}}</span>
       <input type="text"
+             title="Click to edit!"
              class="form-control"
-             v-show="editable"
              v-model.trim="list.name"
              @input="updateList"
-             @keypress.enter="editable = false"
-             @blur="editable = false"/>
+             />
     </h1>
     <div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
@@ -42,7 +40,6 @@ export default {
   },
   data() {
     return {
-      editable: false,
       isActive: false
     }
   },
@@ -73,3 +70,11 @@ export default {
   }
 }
 </script>
+
+<style>
+h1.h2 input {
+  font-size: 2.0rem;
+  margin-left: -10px;
+  border-color: #fff;
+}
+</style>
