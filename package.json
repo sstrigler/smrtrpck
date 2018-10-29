@@ -13,6 +13,7 @@
     "hoodie": "^28.2.6",
     "pouchdb": "^7.0.0",
     "vue": "^2.5.17",
+    "vue-feather-icon": "^1.2.0",
     "vue-hoodie": "git+https://github.com/SergeyRyzhov/vue-hoodie.git"
   },
   "devDependencies": {

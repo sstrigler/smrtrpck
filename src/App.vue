@@ -15,9 +15,9 @@
       <div class="sidebar-sticky">
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span>Lists</span> <a @click="addNewList" href="#">(+)</a>
-          <a class="d-flex align-items-center text-muted" href="#">
-            <span data-feather="plus-circle"></span>
+          <span>Lists</span>
+          <a class="d-flex align-items-center text-muted" href="#" @click="addNewList">
+            <plus-circle-icon class="feather"></plus-circle-icon>
           </a>
         </h6>
         <ul class="nav flex-column mb-2">
@@ -26,17 +26,18 @@
             v-for="(list, idx) in lists"
             :key="list._id">
             <a class="nav-link" :class="{ active: currentList === idx }" href="#" @click="setCurrentList(idx)">{{list.name}}
-              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#">(-)</a></a>
+              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#">(-)</a>
+            </a>
           </li>
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <!--h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Inventory</span>
           <a class="d-flex align-items-center text-muted" href="#">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
-        <Inventory/>
+        <Inventory/-->
       </div>
     </nav>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
@@ -52,11 +53,13 @@
 <script>
 import GearList from './components/GearList.vue'
 import Inventory from './components/Inventory.vue'
+import { PlusCircle } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
-    Inventory
+    Inventory,
+    PlusCircleIcon: PlusCircle.default
   },
   created: function () {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
@@ -69,10 +72,10 @@ export default {
             if (this.lists.length === 0) this.addNewList();
           });
       }
-    ).catch(() =>
-            this.$hoodie.store.add(this.smrtrpck).then(
-              () => this.addNewList())
-    );
+    ).catch(() => {
+      this.$hoodie.store.add(this.smrtrpck).then(
+        () => this.addNewList());
+    });
   },
   updated: function() {
     this.setCurrentList(this.smrtrpck.lastList);
@@ -140,6 +143,7 @@ body {
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
+  stroke: #999;
 }
 
 /*

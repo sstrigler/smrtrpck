@@ -35,12 +35,19 @@
              @change="updateItem"
              />
     </td>
-    <td><input type="button" class="form-control form-control-sm"  @click="deleteItem" value="(-)" /></td>
+    <td><a class="d-flex align-items-center text-muted" href="#" @click="deleteItem">
+        <x-circle-icon class="feather"></x-circle-icon>
+    </a></td>
   </tr>
 </template>
 
 <script>
+import { XCircle } from 'vue-feather-icon'
+
 export default {
+  components: {
+    XCircleIcon: XCircle.default
+  },
   methods: {
     deleteItem() {
       this.$emit('deleteItem');
@@ -71,5 +78,14 @@ tr:nth-of-type(2n) td input {
 
 td input[type="number"] {
   width: 60px;
+}
+
+td .feather {
+  margin-top: 7px;
+  visibility: hidden;
+}
+
+tr:hover td .feather {
+  visibility: visible;
 }
 </style>
