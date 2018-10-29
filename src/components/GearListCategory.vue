@@ -36,9 +36,9 @@
             <a href="#"
                @click="addNewItem">Add new item</a>
           </td>
-          <td>{{totalWeight}}</td>
+          <td class="sum">{{totalWeight}}</td>
           <td />
-          <td>{{totalQty}}</td>
+          <td class="sum">{{totalQty}}</td>
           <td />
         </tr>
         <tr>
@@ -98,5 +98,8 @@ h2 input {
   font-size: 1.4rem !important;
   margin-left: -10px;
   border-color: #fff !important;
+}
+tfoot td.sum {
+  font-weight:bold;
 }
 </style>
