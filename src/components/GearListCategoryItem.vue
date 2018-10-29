@@ -63,6 +63,7 @@ tr:nth-of-type(2n+1) td input {
   background-color: #f2f2f2 !important;
   border-color: #f2f2f2 !important;
 }
+
 tr:nth-of-type(2n) td input {
   background-color: #fff !important;
   border-color: #fff !important;
