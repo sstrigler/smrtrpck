@@ -74,6 +74,7 @@ export default {
 <style>
 h1.h2 input {
   font-size: 2.0rem;
+  height: 3.0rem !important;
   margin-left: -10px;
   border-color: #fff;
 }
