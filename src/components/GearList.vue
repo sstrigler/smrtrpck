@@ -9,7 +9,7 @@
              @change="updateList"
              />
     </h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
+    <!--div class="btn-toolbar mb-2 mb-md-0">
       <div class="btn-group mr-2">
         <button class="btn btn-sm btn-outline-secondary">Share</button>
         <button class="btn btn-sm btn-outline-secondary">Export</button>
@@ -18,7 +18,7 @@
         <span data-feather="versions"></span>
         Versions
       </button>
-    </div>
+    </div-->
   </div>
 
   <table align="right" class="table table-respsonsive table-sm width-240 text-nowrap">
