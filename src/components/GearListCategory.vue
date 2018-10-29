@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     addNewItem() {
-      this.category.items.push({weight: 0, qty: 0});
+      this.category.items.push({weight: 0, qty: 1});
     },
     deleteCategory() {
       this.$emit('deleteCategory');
