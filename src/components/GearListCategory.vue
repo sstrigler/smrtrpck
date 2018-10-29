@@ -24,9 +24,10 @@
       </thead>
       <tbody>
         <GearListCategoryItem
-          v-for="item in category.items"
-          :key="item.id"
+          v-for="(item, idx) in category.items"
+          :key="idx"
           :item="item"
+          @deleteItem="deleteItem(idx)"
           @itemUpdated="updateCategory"/>
       </tbody>
       <tfoot>
@@ -74,6 +75,10 @@ export default {
     },
     deleteCategory() {
       this.$emit('deleteCategory');
+    },
+    deleteItem(idx) {
+      this.category.items.splice(idx, 1);
+      this.$emit('categoryUpdated');
     },
     updateCategory() {
       this.$emit('categoryUpdated');

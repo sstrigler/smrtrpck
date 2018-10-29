@@ -35,13 +35,16 @@
              @change="updateItem"
              />
     </td>
-    <td>(-)</td>
+    <td><input type="button" class="form-control form-control-sm"  @click="deleteItem" value="(-)" /></td>
   </tr>
 </template>
 
 <script>
 export default {
   methods: {
+    deleteItem() {
+      this.$emit('deleteItem');
+    },
     updateItem() {
       this.$emit('itemUpdated');
     }
