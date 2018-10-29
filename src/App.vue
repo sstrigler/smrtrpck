@@ -23,12 +23,10 @@
         <ul class="nav flex-column mb-2">
           <li
             class="nav-item"
-            v-for="list in lists"
+            v-for="(list, idx) in lists"
             :key="list._id">
-            <a class="nav-link" :class="{ active: currentList === list }" href="#" @click="setCurrentList(list._id)">
-              <span data-feather="file-text"></span>
-              {{list.name}}
-            </a>
+            <a class="nav-link" :class="{ active: currentList === idx }" href="#" @click="setCurrentList(idx)">{{list.name}}
+              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#">(-)</a></a>
           </li>
         </ul>
 
@@ -96,13 +94,23 @@ export default {
         }
       )
     },
-    setCurrentList(list_id) {
+    removeList(e, idx) {
+      e.stopPropagation();
+      this.gearListStore.remove(this.lists[idx]).then( () => {
+        if (idx < this.currentList) {
+          this.setCurrentList(this.currentList-1);
+        }
+        this.lists.splice(idx,1);
+      });
+    },
+    setCurrentList(idx) {
+      this.currentList = idx;
       this.$children.forEach(child =>
                              {
                                if (child.list)
-                                 child.isActive = child.list._id === list_id});
-      if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== list_id) {
-        this.smrtrpck.lastList = list_id;
+                                 child.isActive = child.list._id === this.lists[idx]._id});
+      if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== idx) {
+        this.smrtrpck.lastList = idx;
         this.$hoodie.store.update(this.smrtrpck);
       }
     }
