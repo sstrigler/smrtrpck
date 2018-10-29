@@ -130,4 +130,8 @@ h1.h2 input {
   margin-left: -10px;
   border-color: #fff;
 }
+
+tfoot th {
+  text-align: right;
+}
 </style>
