@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <table class="table table-respsonsive table-sm">
+  <table align="right" class="table table-respsonsive table-sm width-240 text-nowrap">
     <thead class="thead-dark">
       <tr>
         <th>Category</th>
@@ -133,5 +133,8 @@ h1.h2 input {
 
 tfoot th {
   text-align: right;
+}
+.width-240 {
+  width: 1.0rem;
 }
 </style>
