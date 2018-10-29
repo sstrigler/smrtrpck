@@ -75,7 +75,7 @@ export default {
     );
   },
   updated: function() {
-    this.setCurrentList(this.smrtrpck.lastList)
+    this.setCurrentList(this.smrtrpck.lastList);
   },
   data: function() {
     return {
@@ -105,10 +105,11 @@ export default {
     },
     setCurrentList(idx) {
       this.currentList = idx;
-      this.$children.forEach(child =>
-                             {
-                               if (child.list)
-                                 child.isActive = child.list._id === this.lists[idx]._id});
+      this.$children.forEach(
+        child => {
+          if (child.list)
+            child.isActive = child.list._id === this.lists[idx]._id
+        });
       if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== idx) {
         this.smrtrpck.lastList = idx;
         this.$hoodie.store.update(this.smrtrpck);
