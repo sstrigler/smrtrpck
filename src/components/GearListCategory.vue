@@ -15,7 +15,7 @@
           <th>#</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Options</th>
+          <th/>
           <th>Weight</th>
           <th>Unit</th>
           <th>Qty</th>

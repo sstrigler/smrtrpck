@@ -39,24 +39,24 @@
     </tbody>
     <tfoot>
       <tr>
-        <th>Total</th>
-        <td>{{totalWeight(() => true)}}</td>
-      </tr>
-      <tr>
-        <th>Base Weight</th>
-        <td>{{totalWeight((item) => item.category != 'consumable' && item.category != 'worn')}}</td>
-      </tr>
-      <tr>
         <th>Worn</th>
-        <td>{{totalWeight((item) => item.category == 'worn')}}</td>
+        <td>{{totalWeight((item) => item.type == 'worn')}}</td>
       </tr>
       <tr>
         <th>Consumables</th>
-        <td>{{totalWeight((item) => item.category == 'consumable')}}</td>
+        <td>{{totalWeight((item) => item.type == 'consumable')}}</td>
+      </tr>
+      <tr>
+        <th>Base Weight</th>
+        <td>{{totalWeight((item) => item.type != 'consumable' && item.type != 'worn')}}</td>
       </tr>
       <tr>
         <th>Pack</th>
-        <td>{{totalWeight((item) => item.category != 'worn' && item.category != 'consumable')}}</td>
+        <td>{{totalWeight((item) => item.type != 'worn')}}</td>
+      </tr>
+      <tr>
+        <th>Total</th>
+        <td>{{totalWeight(() => true)}}</td>
       </tr>
     </tfoot>
   </table>

@@ -17,7 +17,13 @@
              @change="updateItem"
              />
     </td>
-    <td></td>
+    <td>
+      <select v-model="item.type">
+        <option value=''></option>
+        <option value='worn'>worn</option>
+        <option value='consumable'>consumable</option>
+      </select>
+    </td>
     <td>
       <input type="number"
              min="0"
