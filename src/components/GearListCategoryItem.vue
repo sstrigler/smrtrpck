@@ -1,12 +1,12 @@
 <template>
   <tr class="form-group">
-    <td>[tbd]</td>
+    <td></td>
     <td>
       <input type="text"
              class="form-control form-control-sm"
              placeholder="Name"
              v-model.trim="d_item.name"
-             @input="updateItem"
+             @input="updateItem('name')"
              />
     </td>
     <td >
@@ -14,16 +14,16 @@
              class="form-control form-control-sm"
              placeholder="Description"
              v-model.trim="d_item.description"
-             @input="updateItem"
+             @input="updateItem('description')"
              />
     </td>
-    <td>[tbd]</td>
+    <td></td>
     <td>
       <input type="number"
              class="form-control form-control-sm"
              placeholder="Weight"
              v-model.number="d_item.weight"
-             @input="updateItem"
+             @input="updateItem('weight')"
              />
     </td>
     <td>{{item.unit}}</td>
@@ -32,7 +32,7 @@
              class="form-control form-control-sm"
              placeholder="Qty"
              v-model.number="d_item.qty"
-             @input="updateItem"
+             @input="updateItem('qty')"
              />
     </td>
   </tr>
@@ -46,8 +46,9 @@ export default {
     }
   },
   methods: {
-    updateItem() {
-      console.log(this.d_item);
+    updateItem(key) {
+      this.item[key] = this.d_item[key];
+      this.$emit('itemUpdated', this.d_item);
     }
   },
   props: {
@@ -60,11 +61,16 @@ export default {
 </script>
 
 <style>
-td input {
+tr:nth-of-type(2n+1) td input {
   background-color: #f2f2f2 !important;
   border-color: #f2f2f2 !important;
 }
+tr:nth-of-type(2n) td input {
+  background-color: #fff !important;
+  border-color: #fff !important;
+}
+
 td input[type="number"] {
-  width: 80px;
+  width: 60px;
 }
 </style>

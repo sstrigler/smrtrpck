@@ -24,8 +24,9 @@
       <tbody>
         <GearListCategoryItem
           v-for="item in d_category.items"
-          :key="item.name"
-          :item="item"/>
+          :key="item.id"
+          :item="item"
+          @itemUpdated="itemUpdated"/>
       </tbody>
       <tfoot>
         <tr>
@@ -47,7 +48,7 @@
 import GearListCategoryItem from './GearListCategoryItem.vue'
 
 function toNum(any) {
-  if (isNaN(any)) return 0;
+  return isNaN(any) ? 0 : any;
 }
 
 export default {
@@ -69,10 +70,12 @@ export default {
   },
   methods: {
     addNewItem() {
-      this.d_category.items.push({});
+      this.category.items.push({weight: 0, qty: 0});
+    },
+    itemUpdated() {
+      this.$emit('updateCategory');
     },
     updateCategoryName() {
-      console.log(this.d_category.name);
       this.category.name = this.d_category.name;
       this.$emit('updateCategory');
     }
