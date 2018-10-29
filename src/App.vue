@@ -25,7 +25,11 @@
             class="nav-item"
             v-for="(list, idx) in lists"
             :key="list._id">
-            <a class="nav-link" :class="{ active: currentList === idx }" href="#" @click="setCurrentList(idx)">{{list.name}}
+            <a class="nav-link"
+               :class="{ active: currentList === idx }"
+               href="#"
+               @click="setCurrentList(idx)">
+              <FileTextIcon class="feather feather-file-text"></FileTextIcon>{{list.name}}
               <a v-show="currentList != idx" @click="removeList($event, idx)" href="#">(-)</a>
             </a>
           </li>
@@ -53,13 +57,14 @@
 <script>
 import GearList from './components/GearList.vue'
 import Inventory from './components/Inventory.vue'
-import { PlusCircle } from 'vue-feather-icon'
+import { PlusCircle, FileText } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
     Inventory,
-    PlusCircleIcon: PlusCircle.default
+    PlusCircleIcon: PlusCircle.default,
+    FileTextIcon: FileText.default
   },
   created: function () {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
