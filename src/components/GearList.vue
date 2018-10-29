@@ -107,7 +107,7 @@ export default {
       this.gearListStore.updateOrAdd(this.list);
     },
     categoryWeight(category, filter) {
-      return category.items.filter(filter).reduce((sum, item) => sum + item.weight, 0);
+      return category.items.filter(filter).reduce((sum, item) => sum + item.qty * item.weight, 0);
     },
     totalWeight(filter) {
       return this.list.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0);

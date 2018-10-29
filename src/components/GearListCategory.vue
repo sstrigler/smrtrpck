@@ -53,20 +53,16 @@
 <script>
 import GearListCategoryItem from './GearListCategoryItem.vue'
 
-function toNum(any) {
-  return isNaN(any) ? 0 : any;
-}
-
 export default {
   components: {
     GearListCategoryItem
   },
   computed: {
     totalWeight () {
-      return this.category.items.reduce((sum, item) => sum + toNum(item.weight), 0)
+      return this.category.items.reduce((sum, item) => sum + item.qty * item.weight, 0)
     },
     totalQty () {
-      return this.category.items.reduce((sum, item) => sum + toNum(item.qty), 0)
+      return this.category.items.reduce((sum, item) => sum + item.qty, 0)
     }
   },
   methods: {
