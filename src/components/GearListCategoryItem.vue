@@ -20,6 +20,7 @@
     <td></td>
     <td>
       <input type="number"
+             min="0"
              class="form-control form-control-sm"
              placeholder="Weight"
              v-model.number="item.weight"
@@ -29,6 +30,7 @@
     <td>{{item.unit}}</td>
     <td>
       <input type="number"
+             min="0"
              class="form-control form-control-sm"
              placeholder="Qty"
              v-model.number="item.qty"
