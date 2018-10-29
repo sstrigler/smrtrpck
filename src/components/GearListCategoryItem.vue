@@ -5,16 +5,16 @@
       <input type="text"
              class="form-control form-control-sm"
              placeholder="Name"
-             v-model.trim="d_item.name"
-             @input="updateItem('name')"
+             v-model.trim="item.name"
+             @change="updateItem"
              />
     </td>
     <td >
       <input type="text"
              class="form-control form-control-sm"
              placeholder="Description"
-             v-model.trim="d_item.description"
-             @input="updateItem('description')"
+             v-model.trim="item.description"
+             @change="updateItem"
              />
     </td>
     <td></td>
@@ -22,8 +22,8 @@
       <input type="number"
              class="form-control form-control-sm"
              placeholder="Weight"
-             v-model.number="d_item.weight"
-             @input="updateItem('weight')"
+             v-model.number="item.weight"
+             @change="updateItem"
              />
     </td>
     <td>{{item.unit}}</td>
@@ -31,24 +31,19 @@
       <input type="number"
              class="form-control form-control-sm"
              placeholder="Qty"
-             v-model.number="d_item.qty"
-             @input="updateItem('qty')"
+             v-model.number="item.qty"
+             @change="updateItem"
              />
     </td>
+    <td>(-)</td>
   </tr>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      d_item: {...this.item}
-    }
-  },
   methods: {
-    updateItem(key) {
-      this.item[key] = this.d_item[key];
-      this.$emit('itemUpdated', this.d_item);
+    updateItem() {
+      this.$emit('itemUpdated');
     }
   },
   props: {
