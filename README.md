@@ -2,6 +2,18 @@
 
 > be smarter when you pack
 
+## bootstrap
+
+Install yarn https://yarnpkg.com/en/docs/install
+
+$ brew install yarn
+
+## Install vue cli
+
+https://cli.vuejs.org/guide/installation.html
+
+$ yarn global add @vue/cli
+
 ## Project setup
 ```
 yarn install
