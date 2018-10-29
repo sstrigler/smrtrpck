@@ -4,8 +4,8 @@
     <input type="text"
            title="Click to edit!"
            class="form-control"
-           v-model.trim="d_category.name"
-           @change="updateCategoryName"
+           v-model.trim="category.name"
+           @change="updateCategory"
            />
   </h2>
   <div class="table-responsive">
@@ -19,14 +19,15 @@
           <th>Weight</th>
           <th>Unit</th>
           <th>Qty</th>
+          <th />
         </tr>
       </thead>
       <tbody>
         <GearListCategoryItem
-          v-for="item in d_category.items"
+          v-for="item in category.items"
           :key="item.id"
           :item="item"
-          @itemUpdated="itemUpdated"/>
+          @itemUpdated="updateCategory"/>
       </tbody>
       <tfoot>
         <tr>
@@ -37,6 +38,10 @@
           <td>{{totalWeight}}</td>
           <td />
           <td>{{totalQty}}</td>
+          <td />
+        </tr>
+        <tr>
+          <td colspan="8"><a @click="deleteCategory" href="#">Delete category</a></td>
         </tr>
       </tfoot>
     </table>
@@ -57,26 +62,20 @@ export default {
   },
   computed: {
     totalWeight () {
-      return this.d_category.items.reduce((sum, item) => sum + toNum(item.weight), 0)
+      return this.category.items.reduce((sum, item) => sum + toNum(item.weight), 0)
     },
     totalQty () {
-      return this.d_category.items.reduce((sum, item) => sum + toNum(item.qty), 0)
-    }
-  },
-  data() {
-    return {
-      d_category: {...this.category}
+      return this.category.items.reduce((sum, item) => sum + toNum(item.qty), 0)
     }
   },
   methods: {
     addNewItem() {
       this.category.items.push({weight: 0, qty: 0});
     },
-    itemUpdated() {
-      this.$emit('updateCategory');
+    deleteCategory() {
+      this.$emit('deleteCategory');
     },
-    updateCategoryName() {
-      this.category.name = this.d_category.name;
+    updateCategory() {
       this.$emit('updateCategory');
     }
   },

@@ -22,10 +22,11 @@
   </div>
   <!--canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas-->
   <GearListCategory
-    v-for="category in list.categories"
-    :key="category.id"
+    v-for="(category, idx) in list.categories"
+    :key="idx"
     :category="category"
     @updateCategory="updateList"
+    @deleteCategory="deleteCategory(idx)"
     />
   <a href="#" @click="addNewCategory">Add new category</a>
 </div>
@@ -52,6 +53,10 @@ export default {
   methods: {
     addNewCategory() {
       this.list.categories.push({name: "New Category", items: []});
+      this.updateList();
+    },
+    deleteCategory(idx) {
+      this.list.categories.splice(idx, 1);
       this.updateList();
     },
     setActive() {
