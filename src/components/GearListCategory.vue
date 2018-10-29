@@ -76,7 +76,7 @@ export default {
       this.$emit('deleteCategory');
     },
     updateCategory() {
-      this.$emit('updateCategory');
+      this.$emit('categoryUpdated');
     }
   },
   props: {

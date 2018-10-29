@@ -25,7 +25,7 @@
     v-for="(category, idx) in list.categories"
     :key="idx"
     :category="category"
-    @updateCategory="updateList"
+    @categoryUpdated="updateList"
     @deleteCategory="deleteCategory(idx)"
     />
   <a href="#" @click="addNewCategory">Add new category</a>
