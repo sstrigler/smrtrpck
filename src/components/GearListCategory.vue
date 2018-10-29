@@ -4,8 +4,8 @@
     <input type="text"
            title="Click to edit!"
            class="form-control"
-           v-model.trim="d_name"
-           @input="updateCategoryName"
+           v-model.trim="d_category.name"
+           @change="updateCategoryName"
            />
   </h2>
   <div class="table-responsive">
@@ -23,7 +23,7 @@
       </thead>
       <tbody>
         <GearListCategoryItem
-          v-for="item in category.items"
+          v-for="item in d_category.items"
           :key="item.name"
           :item="item"/>
       </tbody>
@@ -56,26 +56,25 @@ export default {
   },
   computed: {
     totalWeight () {
-      return this.category.items.reduce((sum, item) => sum + toNum(item.weight), 0)
+      return this.d_category.items.reduce((sum, item) => sum + toNum(item.weight), 0)
     },
     totalQty () {
-      return this.category.items.reduce((sum, item) => sum + toNum(item.qty), 0)
+      return this.d_category.items.reduce((sum, item) => sum + toNum(item.qty), 0)
     }
   },
   data() {
     return {
-      d_name: this.category.name
+      d_category: {...this.category}
     }
   },
   methods: {
     addNewItem() {
-      this.category.items.push({});
+      this.d_category.items.push({});
     },
     updateCategoryName() {
-      if (this.category.name != this.d_name) {
-        this.category.name = this.d_name;
-        this.$emit('updateCategory');
-      }
+      console.log(this.d_category.name);
+      this.category.name = this.d_category.name;
+      this.$emit('updateCategory');
     }
   },
   props: {
