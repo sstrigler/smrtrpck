@@ -46,7 +46,7 @@
     </nav>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <GearList v-for="(list, idx) in lists"
-                :key="list._id"
+                :key="idx"
                 :isActive="idx === 0"
                 :list="list"/>
     </main>
@@ -116,7 +116,7 @@ export default {
       this.$children.forEach(
         child => {
           if (child.list)
-            child.isActive = child.list._id === this.lists[idx]._id
+            child.isActive = child.list === this.lists[idx]
         });
       if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== idx) {
         this.smrtrpck.lastList = idx;
