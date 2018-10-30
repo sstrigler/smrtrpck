@@ -1,19 +1,20 @@
-FROM node:alpine
+FROM node:alpine as build-stage
 
 # Create app directory
-WORKDIR /usr/src/app
-ADD . /usr/src/app
+WORKDIR /app
 
-#COPY yarn.lock package.json ./
+COPY yarn.lock package.json ./
 
 RUN npm install -g yarn
 RUN apk update
 RUN apk add --no-cache --virtual build-deps git python build-base && yarn install && apk del build-deps
-#COPY src public ./
+COPY . .
 ENV NODE_ENV=production
 RUN yarn build
-RUN rm -rf ./src
-RUN rm -rf ./build
+RUN rm -rf ./src ./public ./build
 
-EXPOSE 8080
-CMD [ "npm", "start" ]
+FROM nginx:alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
