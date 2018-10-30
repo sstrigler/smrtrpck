@@ -98,7 +98,7 @@ export default {
       this.gearListStore.add(newList).then(
         list => {
           this.lists.push(list);
-          this.setCurrentList(list._id);
+          this.setCurrentList(this.lists.indexOf(list));
         }
       )
     },
