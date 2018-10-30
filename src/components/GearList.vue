@@ -24,8 +24,8 @@
   <table align="right" class="table table-respsonsive table-sm text-nowrap">
     <thead class="thead-dark">
       <tr>
-        <th>Category</th>
-        <th>Weight</th>
+        <th style="width: 100%">Category</th>
+        <th colspan="2">Weight</th>
       </tr>
     </thead>
     <tbody>
@@ -34,29 +34,45 @@
         :key="idx"
         >
         <td>{{category.name}}</td>
-        <td>{{categoryWeight(category, () => true)}}</td>
+        <td class="text-right">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
+        <td>{{list.totalsUnit}}</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <th>Worn</th>
-        <td>{{totalWeight((item) => item.type == 'worn')}}</td>
+        <td class="text-right">{{totalWeight((item) => item.type == 'worn')}}</td>
+        <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Consumables</th>
-        <td>{{totalWeight((item) => item.type == 'consumable')}}</td>
+        <td class="text-right">{{totalWeight((item) => item.type == 'consumable')}}</td>
+        <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Base Weight</th>
-        <td>{{totalWeight((item) => item.type != 'consumable' && item.type != 'worn')}}</td>
+        <td class="text-right">{{totalWeight((item) => item.type != 'consumable' && item.type != 'worn')}}</td>
+        <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
-        <th>Pack</th>
-        <td>{{totalWeight((item) => item.type != 'worn')}}</td>
+        <th>Packed</th>
+        <td class="text-right">{{totalWeight((item) => item.type != 'worn')}}</td>
+        <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Total</th>
-        <td>{{totalWeight(() => true)}}</td>
+        <td class="text-right">{{totalWeight(() => true)}}</td>
+        <td>
+          <select
+            v-model="list.totalsUnit"
+            @change="updateList"
+            >
+            <option value="g">g</option>
+            <option value="kg">kg</option>
+            <option value="oz">oz</option>
+            <option value="lb">lb</option>
+          </select>
+        </td>
       </tr>
     </tfoot>
   </table>
@@ -65,6 +81,7 @@
     v-for="(category, idx) in list.categories"
     :key="idx"
     :category="category"
+    :totalsUnit="list.totalsUnit"
     @categoryUpdated="updateList"
     @deleteCategory="deleteCategory(idx)"
     />
@@ -106,10 +123,27 @@ export default {
       this.gearListStore.updateOrAdd(this.list);
     },
     categoryWeight(category, filter) {
-      return category.items.filter(filter).reduce((sum, item) => sum + item.qty * item.weight, 0);
+      const toGrams = (weight, unit) => {
+        switch (unit) {
+        case 'kg': return weight * 1000;
+        case 'oz': return weight * 28.35;
+        case 'lb': return weight * 453.7;
+        default: return weight;
+        }
+      };      
+      return category.items.filter(filter).reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0);
+    },
+    convertToTotalsUnit(weight) {
+      switch (this.list.totalsUnit) {
+      case 'kg': return Number(weight/1000).toFixed(2);
+      case 'oz': return Number(weight/28.35).toFixed(2);
+      case 'lb': return Number(weight * 0.002204).toFixed(2);
+      default: return weight;
+      }
     },
     totalWeight(filter) {
-      return this.list.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0);
+      return this.convertToTotalsUnit(
+        this.list.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0));
     }
   },
   created() {

@@ -16,7 +16,7 @@
         <th>Description</th>
         <th colspan="2">Weight</th>
         <th>Qty</th>
-          <th/>
+        <th/>
         <th/>
       </tr>
     </thead>
@@ -34,11 +34,11 @@
           <a href="#"
              @click="addNewItem">Add new item</a>
         </td>
-        <td class="sum">{{totalWeight}}</td>
+        <td class="sum text-right">{{totalWeight}}</td>
+        <td>{{totalsUnit}}</td>
+        <td class="sum text-right">{{totalQty}}</td>
         <td />
-        <td class="sum">{{totalQty}}</td>
-        <td />
-        <td />
+        <td/>
       </tr>
       <tr>
         <td colspan="8"><a @click="deleteCategory" href="#">Delete category</a></td>
@@ -57,7 +57,26 @@ export default {
   },
   computed: {
     totalWeight () {
-      return this.category.items.reduce((sum, item) => sum + item.qty * item.weight, 0)
+      const toGrams = (weight, unit) => {
+        switch (unit) {
+        case 'kg': return weight * 1000;
+        case 'oz': return weight * 28.35;
+        case 'lb': return weight * 453.7;
+        default: return weight;
+        }
+      };
+      
+      const convertToTotalsUnit = (weight) => {
+        switch (this.totalsUnit) {
+        case 'kg': return Number(weight/1000).toFixed(2);
+        case 'oz': return Number(weight/28.35).toFixed(2);
+        case 'lb': return Number(weight * 0.002204).toFixed(2);
+        default: return weight;
+        }
+      };
+
+      return convertToTotalsUnit(
+        this.category.items.reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0));
     },
     totalQty () {
       return this.category.items.reduce((sum, item) => sum + item.qty, 0)
@@ -65,7 +84,7 @@ export default {
   },
   methods: {
     addNewItem() {
-      this.category.items.push({weight: 0, qty: 1, unit: 'g'});
+      this.category.items.push({weight: 0, qty: 1, unit: "g", type: ""});
     },
     deleteCategory() {
       this.$emit('deleteCategory');
@@ -81,7 +100,10 @@ export default {
   props: {
     category: {
       type: Object,
-      require: true
+      required: true
+    },
+    totalsUnit: {
+      type: String
     }
   }
 }
@@ -96,5 +118,6 @@ h2 input {
 
 tfoot td.sum {
   font-weight:bold;
+  padding-right: 1.5rem;
 }
 </style>

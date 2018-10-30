@@ -20,7 +20,7 @@
     <td>
       <input type="number"
              min="0"
-             class="form-control form-control-sm"
+             class="form-control form-control-sm text-right"
              placeholder="Weight"
              v-model.number="item.weight"
              @change="updateItem"
@@ -41,7 +41,7 @@
     <td>
       <input type="number"
              min="0"
-             class="form-control form-control-sm"
+             class="form-control form-control-sm text-right"
              placeholder="Qty"
              v-model.number="item.qty"
              @change="updateItem"
@@ -53,7 +53,7 @@
         v-model="item.type"
         @change="updateItem"
         >
-        <option value=""></option>
+        <option value="">regular</option>
         <option value="worn">worn</option>
         <option value="consumable">consumable</option>
       </select>

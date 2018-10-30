@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     addNewList() {
-      let newList = {name: "New List"};
+      let newList = {name: "New List", totalsUnit: "kg"};
       this.gearListStore.add(newList).then(
         list => {
           this.lists.push(list);
