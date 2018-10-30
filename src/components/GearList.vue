@@ -135,8 +135,8 @@ export default {
     },
     convertToTotalsUnit(weight) {
       switch (this.list.totalsUnit) {
-      case 'kg': return Number(weight/1000).toFixed(2);
-      case 'oz': return Number(weight/28.35).toFixed(2);
+      case 'kg': return Number(weight / 1000).toFixed(2);
+      case 'oz': return Number(weight / 28.35).toFixed(2);
       case 'lb': return Number(weight * 0.002204).toFixed(2);
       default: return weight;
       }
