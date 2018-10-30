@@ -18,13 +18,6 @@
              />
     </td>
     <td>
-      <select v-model="item.type">
-        <option value=''></option>
-        <option value='worn'>worn</option>
-        <option value='consumable'>consumable</option>
-      </select>
-    </td>
-    <td>
       <input type="number"
              min="0"
              class="form-control form-control-sm"
@@ -43,9 +36,18 @@
              @change="updateItem"
              />
     </td>
-    <td><a class="d-flex align-items-center text-muted" href="#" @click="deleteItem">
+    <td>
+      <select v-model="item.type">
+        <option value=''></option>
+        <option value='worn'>worn</option>
+        <option value='consumable'>consumable</option>
+      </select>
+    </td>
+    <td>
+      <a class="d-flex align-items-center text-muted" href="#" @click="deleteItem">
         <x-circle-icon class="feather"></x-circle-icon>
-    </a></td>
+      </a>
+    </td>
   </tr>
 </template>
 

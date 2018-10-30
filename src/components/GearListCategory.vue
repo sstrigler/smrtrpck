@@ -9,17 +9,17 @@
            />
   </h2>
   <div class="table-responsive">
-    <table class="table table-striped table-sm">
+    <table class="table table-sm table-striped ">
       <thead class="thead-dark">
         <tr>
           <th>#</th>
           <th>Name</th>
           <th>Description</th>
-          <th/>
           <th>Weight</th>
           <th>Unit</th>
           <th>Qty</th>
-          <th />
+          <th/>
+          <th/>
         </tr>
       </thead>
       <tbody>
@@ -32,13 +32,14 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="4">
+          <td colspan="3">
             <a href="#"
                @click="addNewItem">Add new item</a>
           </td>
           <td class="sum">{{totalWeight}}</td>
           <td />
           <td class="sum">{{totalQty}}</td>
+          <td />
           <td />
         </tr>
         <tr>
