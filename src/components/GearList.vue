@@ -76,7 +76,7 @@
       </tr>
     </tfoot>
   </table>
-  
+
   <GearListCategory
     v-for="(category, idx) in list.categories"
     :key="idx"
@@ -137,7 +137,7 @@ export default {
         case 'lb': return weight * 453.7;
         default: return weight;
         }
-      };      
+      };
       return category.items.filter(filter).reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0);
     },
     convertToTotalsUnit(weight) {

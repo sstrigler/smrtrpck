@@ -65,7 +65,7 @@ export default {
         default: return weight;
         }
       };
-      
+
       const convertToTotalsUnit = (weight) => {
         switch (this.totalsUnit) {
         case 'kg': return Number(weight/1000).toFixed(2);
