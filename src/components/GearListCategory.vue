@@ -12,8 +12,8 @@
     <thead class="thead-dark">
       <tr>
         <th>#</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th style="width: 30%">Name</th>
+        <th style="width: 70%">Description</th>
         <th colspan="2">Weight</th>
         <th>Qty</th>
         <th/>

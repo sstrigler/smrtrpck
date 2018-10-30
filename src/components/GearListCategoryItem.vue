@@ -29,6 +29,7 @@
     <td>
       <select
         class="form-control form-control-sm"
+        style="width: 3rem;"
         v-model="item.unit"
         @change="updateItem"
         >
@@ -50,6 +51,7 @@
     <td>
       <select
         class="form-control form-control-sm"
+        style="width: 5rem;"
         v-model="item.type"
         @change="updateItem"
         >
