@@ -26,7 +26,18 @@
              @change="updateItem"
              />
     </td>
-    <td>{{item.unit}}</td>
+    <td>
+      <select
+        class="form-control form-control-sm"
+        v-model="item.unit"
+        @change="updateItem"
+        >
+        <option value="g">g</option>
+        <option value="kg">kg</option>
+        <option value="oz">oz</option>
+        <option value="lb">lb</option>
+      </select>
+    </td>
     <td>
       <input type="number"
              min="0"
@@ -37,10 +48,14 @@
              />
     </td>
     <td>
-      <select v-model="item.type">
-        <option value=''></option>
-        <option value='worn'>worn</option>
-        <option value='consumable'>consumable</option>
+      <select
+        class="form-control form-control-sm"
+        v-model="item.type"
+        @change="updateItem"
+        >
+        <option value=""></option>
+        <option value="worn">worn</option>
+        <option value="consumable">consumable</option>
       </select>
     </td>
     <td>
