@@ -1,5 +1,5 @@
 <template>
-<div class="gear-list-category">
+<div>
   <h2>
     <input type="text"
            title="Click to edit!"
@@ -8,46 +8,43 @@
            @change="updateCategory"
            />
   </h2>
-  <div class="table-responsive">
-    <table class="table table-sm table-striped ">
-      <thead class="thead-dark">
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Weight</th>
-          <th>Unit</th>
-          <th>Qty</th>
+  <table class="table table-responsive table-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th colspan="2">Weight</th>
+        <th>Qty</th>
           <th/>
-          <th/>
-        </tr>
-      </thead>
-      <tbody>
-        <GearListCategoryItem
-          v-for="(item, idx) in category.items"
-          :key="idx"
-          :item="item"
-          @deleteItem="deleteItem(idx)"
-          @itemUpdated="updateCategory"/>
+        <th/>
+      </tr>
+    </thead>
+    <tbody>
+      <GearListCategoryItem
+        v-for="(item, idx) in category.items"
+        :key="idx"
+        :item="item"
+        @deleteItem="deleteItem(idx)"
+        @itemUpdated="updateCategory"/>
       </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3">
-            <a href="#"
-               @click="addNewItem">Add new item</a>
-          </td>
-          <td class="sum">{{totalWeight}}</td>
-          <td />
-          <td class="sum">{{totalQty}}</td>
-          <td />
-          <td />
-        </tr>
-        <tr>
-          <td colspan="8"><a @click="deleteCategory" href="#">Delete category</a></td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <a href="#"
+             @click="addNewItem">Add new item</a>
+        </td>
+        <td class="sum">{{totalWeight}}</td>
+        <td />
+        <td class="sum">{{totalQty}}</td>
+        <td />
+        <td />
+      </tr>
+      <tr>
+        <td colspan="8"><a @click="deleteCategory" href="#">Delete category</a></td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
 </template>
 
@@ -68,7 +65,7 @@ export default {
   },
   methods: {
     addNewItem() {
-      this.category.items.push({weight: 0, qty: 1});
+      this.category.items.push({weight: 0, qty: 1, unit: 'g'});
     },
     deleteCategory() {
       this.$emit('deleteCategory');
@@ -96,6 +93,7 @@ h2 input {
   margin-left: -10px;
   border-color: #fff !important;
 }
+
 tfoot td.sum {
   font-weight:bold;
 }
