@@ -41,27 +41,27 @@
     <tfoot>
       <tr>
         <th>Worn</th>
-        <td class="text-right">{{totalWeight((item) => item.type == 'worn')}}</td>
+        <td class="text-right">{{wornWeight}}</td>
         <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Consumables</th>
-        <td class="text-right">{{totalWeight((item) => item.type == 'consumable')}}</td>
+        <td class="text-right">{{consumableWeight}}</td>
         <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Base Weight</th>
-        <td class="text-right">{{totalWeight((item) => item.type != 'consumable' && item.type != 'worn')}}</td>
+        <td class="text-right">{{baseWeight}}</td>
         <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Packed</th>
-        <td class="text-right">{{totalWeight((item) => item.type != 'worn')}}</td>
+        <td class="text-right">{{packedWeight}}</td>
         <td>{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Total</th>
-        <td class="text-right">{{totalWeight(() => true)}}</td>
+        <td class="text-right">{{totalWeight}}</td>
         <td>
           <select
             v-model="list.totalsUnit"
@@ -95,6 +95,13 @@ import GearListCategory from './GearListCategory.vue'
 export default {
   components: {
     GearListCategory
+  },
+  computed: {
+    wornWeight: function() { return this.calcWeight((item) => item.type == 'worn'); },
+    consumableWeight: function() { return this.calcWeight((item) => item.type == 'consumable'); },
+    baseWeight: function() { return this.calcWeight((item) => item.type != 'consumable' && item.type != 'worn'); },
+    packedWeight: function() { return this.calcWeight((item) => item.type != 'worn'); },
+    totalWeight: function() { return this.calcWeight(() => true); }
   },
   data() {
     return {
@@ -141,7 +148,7 @@ export default {
       default: return weight;
       }
     },
-    totalWeight(filter) {
+    calcWeight(filter) {
       return this.convertToTotalsUnit(
         this.list.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0));
     }
