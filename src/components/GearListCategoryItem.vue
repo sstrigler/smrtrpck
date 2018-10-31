@@ -32,7 +32,7 @@
     <td>
       <select
         class="form-control form-control-sm"
-        style="width: 3.2rem;"
+        style="width: 3.5rem;"
         v-model="item.unit"
         @change="updateItem"
         >
