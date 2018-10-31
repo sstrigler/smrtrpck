@@ -62,7 +62,7 @@
     </td>
     <td>
       <a class="d-flex align-items-center text-muted" href="#" @click="deleteItem">
-        <x-circle-icon class="feather"></x-circle-icon>
+        <x-circle-icon class="feather delete-icon"></x-circle-icon>
       </a>
     </td>
   </tr>
@@ -114,5 +114,9 @@ td .feather {
 
 tr:hover td .feather {
   visibility: visible;
+}
+
+.delete-icon:hover {
+  stroke: red;
 }
 </style>
