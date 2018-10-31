@@ -30,7 +30,7 @@
     </thead>
     <tbody>
       <tr
-        v-for="(category, idx) in list.categories"
+        v-for="(category, idx) in categories"
         :key="idx"
         >
         <td>{{category.name}}</td>
@@ -78,7 +78,7 @@
   </table>
 
   <GearListCategory
-    v-for="(category, idx) in list.categories"
+    v-for="(category, idx) in categories"
     :key="idx"
     :category="category"
     :totalsUnit="list.totalsUnit"
@@ -103,9 +103,15 @@ export default {
     packedWeight: function() { return this.calcWeight((item) => item.type != 'worn'); },
     totalWeight: function() { return this.calcWeight(() => true); }
   },
-  data() {
+  data: function() {
     return {
-      isActive: false
+      isActive: false,
+      gearListStore: this.$hoodie.store.withIdPrefix('gearList'),
+
+      // [FIXME] if we don't keep this separate new list's view
+      // doesn't get update with new categories
+      categories: this.list.categories || []
+
     }
   },
   props: {
@@ -116,17 +122,17 @@ export default {
   },
   methods: {
     addNewCategory() {
-      this.list.categories.push({name: "New Category", items: []});
-      this.updateList();
+      this.categories.push({name: "New Category", items: []});
     },
     deleteCategory(idx) {
-      this.list.categories.splice(idx, 1);
+      this.categories.splice(idx, 1);
       this.updateList();
     },
     setActive() {
       this.isActive = true
     },
     updateList() {
+      this.list.categories = this.categories; // re-assign, see above
       this.gearListStore.updateOrAdd(this.list);
     },
     categoryWeight(category, filter) {
@@ -150,15 +156,11 @@ export default {
     },
     calcWeight(filter) {
       return this.convertToTotalsUnit(
-        this.list.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0));
+        this.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0));
     }
   },
   created() {
-    this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
-    if (!this.list.categories) {
-      this.list.categories = [];
-      this.addNewCategory();
-    }
+    if (this.categories.length == 0) this.addNewCategory();
   }
 }
 </script>
