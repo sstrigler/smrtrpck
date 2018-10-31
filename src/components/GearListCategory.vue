@@ -5,6 +5,7 @@
            title="Click to edit!"
            class="form-control"
            v-model.trim="category.name"
+           @keypress.enter="$event.target.blur()"
            @change="updateCategory"
            />
   </h2>
