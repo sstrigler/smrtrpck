@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  nginx:
+    image: fiddl.strigler.de:5000/smrtrpck
+    restart: always
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./smrtrpck.conf:/etc/nginx/conf.d/smrtrpck.conf
+    ports: 
+      - 188.40.80.233:80:80
+      - 188.40.80.233:443:443
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    volumes_from:
+      - nginx
