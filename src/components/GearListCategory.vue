@@ -36,7 +36,7 @@
              @click="addNewItem">Add new item</a>
         </td>
         <td class="sum text-right">{{totalWeight}}</td>
-        <td>{{totalsUnit}}</td>
+        <td class="bold">{{totalsUnit}}</td>
         <td class="sum text-right">{{totalQty}}</td>
         <td />
         <td/>
