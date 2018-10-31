@@ -94,13 +94,17 @@ export default {
 
 <style>
 tr:nth-of-type(2n+1) td input {
-  background-color: #f2f2f2 !important;
-  border-color: #f2f2f2 !important;
+  background-color: #f2f2f2;
+  border-color: #f2f2f2;
 }
 
 tr:nth-of-type(2n) td input {
-  background-color: #fff !important;
-  border-color: #fff !important;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+tr:nth-of-type(2n+1) td input:focus {
+  background-color: #fff;
 }
 
 td input[type="number"] {
