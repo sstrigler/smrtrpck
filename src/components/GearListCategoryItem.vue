@@ -6,6 +6,7 @@
              class="form-control form-control-sm"
              placeholder="Name"
              v-model.trim="item.name"
+             @keypress.enter="$event.target.blur()"
              @change="updateItem"
              />
     </td>
@@ -14,6 +15,7 @@
              class="form-control form-control-sm"
              placeholder="Description"
              v-model.trim="item.description"
+             @keypress.enter="$event.target.blur()"
              @change="updateItem"
              />
     </td>
@@ -23,6 +25,7 @@
              class="form-control form-control-sm text-right"
              placeholder="Weight"
              v-model.number="item.weight"
+             @keypress.enter="$event.target.blur()"
              @change="updateItem"
              />
     </td>
@@ -45,6 +48,7 @@
              class="form-control form-control-sm text-right"
              placeholder="Qty"
              v-model.number="item.qty"
+             @keypress.enter="$event.target.blur()"
              @change="updateItem"
              />
     </td>
