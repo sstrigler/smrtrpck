@@ -36,29 +36,29 @@
         >
         <td>{{category.name}}</td>
         <td class="text-right bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
-        <td>{{list.totalsUnit}}</td>
+        <td class="bold">{{list.totalsUnit}}</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <th>Worn</th>
         <td class="text-right bold">{{wornWeight}}</td>
-        <td>{{list.totalsUnit}}</td>
+        <td class="bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Consumables</th>
         <td class="text-right bold">{{consumableWeight}}</td>
-        <td>{{list.totalsUnit}}</td>
+        <td class="bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Base Weight</th>
         <td class="text-right bold">{{baseWeight}}</td>
-        <td>{{list.totalsUnit}}</td>
+        <td class="bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Packed</th>
         <td class="text-right bold">{{packedWeight}}</td>
-        <td>{{list.totalsUnit}}</td>
+        <td class="bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
         <th>Total</th>
