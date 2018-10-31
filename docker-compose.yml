@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx:
-    image: fiddl.strigler.de:5000/smrtrpck
+    image: sstrigler/smrtrpck:latest
     restart: always
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
