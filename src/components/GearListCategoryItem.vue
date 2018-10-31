@@ -1,6 +1,5 @@
 <template>
   <tr class="form-group">
-    <td></td>
     <td>
       <input type="text"
              class="form-control form-control-sm"
