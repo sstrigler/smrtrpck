@@ -41,7 +41,7 @@
         <td/>
       </tr>
       <tr>
-        <td colspan="8"><a @click="deleteCategory" href="#">Delete category</a></td>
+        <td colspan="8"><a @click="deleteCategory" href="#" class="delete-button">Delete category</a></td>
       </tr>
     </tfoot>
   </table>

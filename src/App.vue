@@ -30,7 +30,7 @@
                href="#"
                @click="setCurrentList(idx)">
               <FileTextIcon class="feather feather-file-text"></FileTextIcon>{{list.name}}
-              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#">(-)</a>
+              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#" class="delete-button">(-)</a>
             </a>
           </li>
         </ul>
@@ -240,5 +240,9 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.delete-button:hover {
+  color: red;
 }
 </style>
