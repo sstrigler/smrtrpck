@@ -1,6 +1,6 @@
 # smrtrpck
 
-> be smarter when you pack
+> for when you want to pack smart
 
 ## bootstrap
 
