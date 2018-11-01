@@ -20,7 +20,9 @@
     </td>
     <td>
       <input type="number"
+             lang="en-150"
              min="0"
+             step="0.1"
              class="form-control form-control-sm text-right"
              placeholder="Weight"
              v-model.number="item.weight"
