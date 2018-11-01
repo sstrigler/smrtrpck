@@ -22,7 +22,7 @@
     </div-->
   </div>
 
-  <table align="right" class="table table-respsonsive table-sm text-nowrap">
+  <table class="table table-respsonsive table-sm text-nowrap">
     <thead class="thead-dark">
       <tr>
         <th style="width: 100%">Category</th>
