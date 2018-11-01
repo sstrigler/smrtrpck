@@ -30,7 +30,7 @@
       </tbody>
     <tfoot>
       <tr>
-        <td colspan="3">
+        <td colspan="2">
           <a href="#"
              @click="addNewItem">Add new item</a>
         </td>
