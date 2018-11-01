@@ -31,7 +31,6 @@
     <td>
       <select
         class="form-control form-control-sm"
-        style="width: 3.5rem;"
         v-model="item.unit"
         @change="updateItem"
         >
@@ -54,7 +53,6 @@
     <td>
       <select
         class="form-control form-control-sm"
-        style="width: 5.2rem;"
         v-model="item.type"
         @change="updateItem"
         >
@@ -116,7 +114,7 @@ tr:nth-of-type(2n+1) td input:focus {
 }
 
 td input[type="number"] {
-  width: 60px;
+  width: 4rem;
 }
 
 td .feather {
@@ -130,5 +128,9 @@ tr:hover td .feather {
 
 .delete-icon:hover {
   stroke: red;
+}
+
+td select {
+  width: auto !important;
 }
 </style>
