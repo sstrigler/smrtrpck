@@ -12,8 +12,8 @@
   <table class="table table-responsive table-sm table-striped">
     <thead class="thead-dark">
       <tr>
-        <th style="width: 30%">Name</th>
-        <th style="width: 70%">Description</th>
+        <th style="width: 30%; min-width: 6rem;">Name</th>
+        <th style="width: 70%; min-width: 10rem;">Description</th>
         <th colspan="2">Weight</th>
         <th>Qty</th>
         <th/>
