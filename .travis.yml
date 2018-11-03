@@ -19,7 +19,7 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
 
-notfifications:
+notifications:
   webhooks: https://fiddl.strigler.de/smrtrpck/
 
 env:
