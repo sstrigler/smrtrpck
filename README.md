@@ -2,6 +2,8 @@
 
 > for when you want to pack smart
 
+[![Build Status](https://travis-ci.org/sstrigler/smrtrpck.svg?branch=master)](https://travis-ci.org/sstrigler/smrtrpck)
+
 ## bootstrap
 
 Install yarn https://yarnpkg.com/en/docs/install
