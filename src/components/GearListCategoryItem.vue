@@ -80,11 +80,10 @@ export default {
   },
   mounted() {
     this.$el.children[0].children[0].focus();
-    let el = this.$el.children[0].children[0];
-    setTimeout(function() {el.scrollIntoView()}, 1);
   },
   methods: {
-    deleteItem() {
+    deleteItem(e) {
+      e.preventDefault();
       this.$emit('deleteItem');
     },
     updateItem() {

@@ -83,10 +83,12 @@ export default {
     }
   },
   methods: {
-    addNewItem() {
+    addNewItem(e) {
+      e.preventDefault();
       this.category.items.push({weight: 0, qty: 1, unit: "g", type: ""});
     },
-    deleteCategory() {
+    deleteCategory(e) {
+      e.preventDefault();
       this.$emit('deleteCategory');
     },
     deleteItem(idx) {
