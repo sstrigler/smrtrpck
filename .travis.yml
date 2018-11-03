@@ -19,6 +19,9 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
 
+notfifications:
+  webhooks: https://fiddl.strigler.de/smrtrpck/
+
 env:
   global:
     - secure: wcUENzt/73oTdya6eh+JLA1/m93y1ZtkJxaEmSqHpQq8lQ4+jY+Z5yxkrSTw3wy8UgOzLmGz2Icm1GPzGqfFsUatKiIOoysh5K12NpPsDX7DJlSWBN0vCEYb0YtKYCrtMlBKFubZ22DrVE9WLyRyeq+AoIUpw1d3+DpJZx/B/0DqvuGV8g90/n/qIcutr3oa3kMdCe6R64/1u9FwK/GQ/IjP+PyN13mFxk+tRsRPkdarOZK1ak3T22yJmrz0BPVJzggbcn55U96kBe3dqJNejmyo9qkM5hp3pzb8d1jLdO09/poGsDbsSHNBPP8NKy8c6QKwyDGuZJr++73Ntnr42P42sP63Jb0itvftuG7zYuqAz3nwXieujEzM8oCh+nbcvfahsJFpyDmXnUvjhzQs59FQDbkiuGTMZQyVPENqGkOZoVnUlIjPLJE12+EEPP35DXF9g77m6t3LHU8Y0a1gsyp/1H46Y90AlegIAf3LZcL85o3Nlto/iBPK8wi7wcUlPnhH9La8m8jJAGpQfrGgh3G6MNI6kPXyJTH9p+n/oRj/k2ho4KFGQVfIwLG92wNpLfadWujHilSQk02LTS06bf62btMUV8ZHJca9v5+ov+egK3guknpXyqfmLFNH9captsBbT9IOMXcx3HpCP5LxcLmFmwA+I64suABGn6mpayU=
