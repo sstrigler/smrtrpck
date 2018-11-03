@@ -23,7 +23,7 @@
              lang="en-150"
              min="0"
              step="0.1"
-             class="form-control form-control-sm text-right"
+             class="form-control form-control-sm text-right weight"
              placeholder="Weight"
              v-model.number="item.weight"
              @keypress.enter="$event.target.blur()"
@@ -45,7 +45,7 @@
     <td>
       <input type="number"
              min="0"
-             class="form-control form-control-sm text-right"
+             class="form-control form-control-sm text-right qty"
              placeholder="Qty"
              v-model.number="item.qty"
              @keypress.enter="$event.target.blur()"
@@ -115,8 +115,12 @@ tr:nth-of-type(2n+1) td input:focus {
   background-color: #fff;
 }
 
-td input[type="number"] {
-  width: 4rem;
+td input[type="number"].weight {
+  width: 4.5rem;
+}
+
+td input[type="number"].qty {
+  width: 2.5rem;
 }
 
 td .feather {
