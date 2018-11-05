@@ -138,7 +138,7 @@ export default {
 }
 
 a {
-  color: #42b983;
+  color: #256537;
 }
 
 body {
