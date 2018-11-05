@@ -122,7 +122,8 @@ export default {
     }
   },
   methods: {
-    addNewCategory() {
+    addNewCategory(e) {
+      e.preventDefault();
       this.categories.push({items: []});
     },
     deleteCategory(idx) {
