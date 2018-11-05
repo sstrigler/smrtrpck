@@ -16,7 +16,7 @@
         <th style="width: 70%; min-width: 10rem;">Description</th>
         <th colspan="2">Weight</th>
         <th>Qty</th>
-        <th/>
+        <th>Type</th>
         <th/>
       </tr>
     </thead>
