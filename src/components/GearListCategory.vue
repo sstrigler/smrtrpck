@@ -138,5 +138,4 @@ tfoot td.sum {
 .delete-button:focus {
   color: red;
 }
-
 </style>
