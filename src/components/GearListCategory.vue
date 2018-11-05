@@ -130,4 +130,13 @@ tfoot td.sum {
   font-weight:bold;
   padding-right: 1.5rem;
 }
+
+.delete-button:hover {
+  color: red;
+}
+
+.delete-button:focus {
+  color: red;
+}
+
 </style>

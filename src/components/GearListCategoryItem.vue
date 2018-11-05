@@ -135,10 +135,6 @@ tr:hover td .feather {
   stroke: red;
 }
 
-.delete-button:hover {
-  color: red;
-}
-
 td select {
   width: auto !important;
 }
