@@ -64,7 +64,7 @@
       </select>
     </td>
     <td>
-      <a class="d-flex align-items-center text-muted" href="#" @click="deleteItem">
+      <a class="d-flex align-items-center text-muted" href="#" @click="deleteItem" title="Delete item">
         <x-circle-icon class="feather delete-icon"></x-circle-icon>
       </a>
     </td>

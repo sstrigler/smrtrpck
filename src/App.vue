@@ -16,7 +16,7 @@
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Lists</span>
-          <a class="d-flex align-items-center text-muted" href="#" @click="addNewList">
+          <a class="d-flex align-items-center text-muted" href="#" @click="addNewList" title="Add new list">
             <plus-circle-icon class="feather"></plus-circle-icon>
           </a>
         </h6>
@@ -29,8 +29,8 @@
                :class="{ active: currentList === idx }"
                href="#"
                @click="setCurrentList(idx)">
-              <FileTextIcon class="feather feather-file-text"></FileTextIcon>{{list.name}}
-              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#" class="delete-button">(-)</a>
+              <FileTextIcon class="feather"></FileTextIcon>{{list.name}}
+              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#" class="delete-button" title="Delete list"><MinusCircleIcon  class="feather"></MinusCircleIcon></a>
             </a>
           </li>
         </ul>
@@ -57,14 +57,15 @@
 <script>
 import GearList from './components/GearList.vue'
 import Inventory from './components/Inventory.vue'
-import { PlusCircle, FileText } from 'vue-feather-icon'
+import { PlusCircle, FileText, MinusCircle } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
     Inventory,
     PlusCircleIcon: PlusCircle.default,
-    FileTextIcon: FileText.default
+    FileTextIcon: FileText.default,
+    MinusCircleIcon: MinusCircle.default
   },
   created: function () {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
