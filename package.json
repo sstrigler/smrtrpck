@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "scripts/test",
-    "start-hoodie": "hoodie --port 8084"
+    "start": "hoodie"
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.11",
