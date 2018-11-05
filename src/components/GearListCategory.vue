@@ -30,21 +30,23 @@
       </tbody>
     <tfoot>
       <tr>
-        <td colspan="2">
-          <a href="#"
-             @click="addNewItem">Add new item</a>
-        </td>
+        <th colspan="2">
+          Total
+        </th>
         <td class="sum text-right">{{totalWeight}}</td>
         <td class="bold">{{totalsUnit}}</td>
         <td class="sum text-right">{{totalQty}}</td>
         <td />
         <td/>
       </tr>
-      <tr>
-        <td colspan="8"><a @click="deleteCategory" href="#" class="delete-button">Delete category</a></td>
-      </tr>
     </tfoot>
   </table>
+  <a href="#"
+     @click="addNewItem">Add new item</a>
+  |
+  <a @click="deleteCategory"
+     href="#"
+     class="delete-button">Delete category</a>
 </div>
 </template>
 
