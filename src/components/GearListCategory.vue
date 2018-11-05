@@ -41,12 +41,14 @@
       </tr>
     </tfoot>
   </table>
-  <a href="#"
-     @click="addNewItem">Add new item</a>
-  |
-  <a @click="deleteCategory"
-     href="#"
-     class="delete-button">Delete category</a>
+  <div style="padding-bottom: 1rem;" >
+    <a href="#"
+       @click="addNewItem">Add new item</a>
+    |
+    <a @click="deleteCategory"
+       href="#"
+       class="delete-button">Delete category</a>
+  </div>
 </div>
 </template>
 
