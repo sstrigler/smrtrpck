@@ -86,7 +86,10 @@
     @categoryUpdated="updateList"
     @deleteCategory="deleteCategory(idx)"
     />
-  <a href="#" @click="addNewCategory">Add new category</a>
+
+  <div style="padding-bottom: 1rem;">
+    <a href="#" @click="addNewCategory">Add new category</a>
+  </div>
 </div>
 </template>
 
