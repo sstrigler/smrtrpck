@@ -10,6 +10,10 @@ node_js:
 
 cache: yarn
 
+script:
+  - yarn lint
+  - yarn test
+
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO=sstrigler/smrtrpck
