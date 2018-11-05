@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     addNewCategory() {
-      this.categories.push({name: "New Category", items: []});
+      this.categories.push({items: []});
     },
     deleteCategory(idx) {
       this.categories.splice(idx, 1);

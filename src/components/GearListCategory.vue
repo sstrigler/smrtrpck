@@ -4,6 +4,7 @@
     <input type="text"
            title="Click to edit!"
            class="form-control"
+           placeholder="New Category"
            v-model.trim="category.name"
            @keypress.enter="$event.target.blur()"
            @change="updateCategory"
@@ -102,6 +103,9 @@ export default {
     updateCategory() {
       this.$emit('categoryUpdated');
     }
+  },
+  mounted() {
+    this.$el.children[0].children[0].focus();
   },
   props: {
     category: {
