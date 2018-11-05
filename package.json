@@ -13,41 +13,26 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "hoodie": "^28.2.6",
     "pouchdb": "^7.0.0",
+    "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-feather-icon": "^1.2.0",
     "vue-hoodie": "git+https://github.com/SergeyRyzhov/vue-hoodie.git"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.0.0-beta.53",
     "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-plugin-pwa": "^3.0.5",
+    "@vue/cli-plugin-unit-jest": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
-    "vue-cli-plugin-bootstrap-vue": "^0.1.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.20",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
     "vue-template-compiler": "^2.5.17"
   },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ],
   "hoodie": {
     "adminPassword": "test-pw"
   }
