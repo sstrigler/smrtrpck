@@ -78,16 +78,16 @@ export default {
   components: {
     XCircleIcon: XCircle.default
   },
-  mounted() {
-    this.$el.children[0].children[0].focus();
+  mounted () {
+    this.$el.children[0].children[0].focus()
   },
   methods: {
-    deleteItem(e) {
-      e.preventDefault();
-      this.$emit('deleteItem');
+    deleteItem (e) {
+      e.preventDefault()
+      this.$emit('deleteItem')
     },
-    updateItem() {
-      this.$emit('itemUpdated');
+    updateItem () {
+      this.$emit('itemUpdated')
     }
   },
   props: {

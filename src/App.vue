@@ -56,78 +56,74 @@
 
 <script>
 import GearList from './components/GearList.vue'
-import Inventory from './components/Inventory.vue'
 import { PlusCircle, FileText, MinusCircle } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
-    Inventory,
     PlusCircleIcon: PlusCircle.default,
     FileTextIcon: FileText.default,
     MinusCircleIcon: MinusCircle.default
   },
   created: function () {
-    this.gearListStore = this.$hoodie.store.withIdPrefix('gearList');
-    this.$hoodie.store.find({_id: 'smrtrpck'}).then(
+    this.gearListStore = this.$hoodie.store.withIdPrefix('gearList')
+    this.$hoodie.store.find({ _id: 'smrtrpck' }).then(
       smrtrpck => {
         this.smrtrpck = smrtrpck
         this.gearListStore.findAll().then(
           lists => {
-            this.lists = lists;
-            if (this.lists.length === 0) this.addNewList();
-          });
+            this.lists = lists
+            if (this.lists.length === 0) this.addNewList()
+          })
       }
     ).catch(() => {
       this.$hoodie.store.add(this.smrtrpck).then(
-        () => this.addNewList());
-    });
+        () => this.addNewList())
+    })
   },
-  updated: function() {
-    this.setCurrentList(this.smrtrpck.lastList);
+  updated: function () {
+    this.setCurrentList(this.smrtrpck.lastList)
   },
-  data: function() {
+  data: function () {
     return {
       lists: [],
       currentList: null,
-      smrtrpck: {_id: 'smrtrpck'}
+      smrtrpck: { _id: 'smrtrpck' }
     }
   },
   methods: {
-    addNewList() {
-      let newList = {name: "New List", totalsUnit: "kg"};
+    addNewList () {
+      let newList = { name: 'New List', totalsUnit: 'kg' }
       this.gearListStore.add(newList).then(
         list => {
-          this.lists.push(list);
-          this.setCurrentList(this.lists.indexOf(list));
+          this.lists.push(list)
+          this.setCurrentList(this.lists.indexOf(list))
         }
       )
     },
-    removeList(e, idx) {
-      e.stopPropagation();
-      this.gearListStore.remove(this.lists[idx]).then( () => {
+    removeList (e, idx) {
+      e.stopPropagation()
+      this.gearListStore.remove(this.lists[idx]).then(() => {
         if (idx < this.currentList) {
-          this.setCurrentList(this.currentList-1);
+          this.setCurrentList(this.currentList - 1)
         }
-        this.lists.splice(idx,1);
-      });
+        this.lists.splice(idx, 1)
+      })
     },
-    setCurrentList(idx) {
-      this.currentList = idx;
+    setCurrentList (idx) {
+      this.currentList = idx
       this.$children.forEach(
         child => {
-          if (child.list)
-            child.isActive = child.list === this.lists[idx]
-        });
+          if (child.list) { child.isActive = child.list === this.lists[idx] }
+        })
       if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== idx) {
-        this.smrtrpck.lastList = idx;
-        this.$hoodie.store.update(this.smrtrpck);
+        this.smrtrpck.lastList = idx
+        this.$hoodie.store.update(this.smrtrpck)
       }
     }
   }
 }
 </script>
-
 
 <style>
 #app {

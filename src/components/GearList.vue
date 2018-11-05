@@ -101,13 +101,13 @@ export default {
     GearListCategory
   },
   computed: {
-    wornWeight: function() { return this.calcWeight((item) => item.type == 'worn'); },
-    consumableWeight: function() { return this.calcWeight((item) => item.type == 'consumable'); },
-    baseWeight: function() { return this.calcWeight((item) => item.type != 'consumable' && item.type != 'worn'); },
-    packedWeight: function() { return this.calcWeight((item) => item.type != 'worn'); },
-    totalWeight: function() { return this.calcWeight(() => true); }
+    wornWeight: function () { return this.calcWeight((item) => item.type === 'worn') },
+    consumableWeight: function () { return this.calcWeight((item) => item.type === 'consumable') },
+    baseWeight: function () { return this.calcWeight((item) => item.type !== 'consumable' && item.type !== 'worn') },
+    packedWeight: function () { return this.calcWeight((item) => item.type !== 'worn') },
+    totalWeight: function () { return this.calcWeight(() => true) }
   },
-  data: function() {
+  data: function () {
     return {
       isActive: false,
       gearListStore: this.$hoodie.store.withIdPrefix('gearList'),
@@ -125,47 +125,47 @@ export default {
     }
   },
   methods: {
-    addNewCategory(e) {
-      e.preventDefault();
-      this.categories.push({items: []});
+    addNewCategory (e) {
+      e.preventDefault()
+      this.categories.push({ items: [] })
     },
-    deleteCategory(idx) {
-      this.categories.splice(idx, 1);
-      this.updateList();
+    deleteCategory (idx) {
+      this.categories.splice(idx, 1)
+      this.updateList()
     },
-    setActive() {
+    setActive () {
       this.isActive = true
     },
-    updateList() {
-      this.list.categories = this.categories; // re-assign, see above
-      this.gearListStore.updateOrAdd(this.list);
+    updateList () {
+      this.list.categories = this.categories // re-assign, see above
+      this.gearListStore.updateOrAdd(this.list)
     },
-    categoryWeight(category, filter) {
+    categoryWeight (category, filter) {
       const toGrams = (weight, unit) => {
         switch (unit) {
-        case 'kg': return weight * 1000;
-        case 'oz': return weight * 28.35;
-        case 'lb': return weight * 453.7;
-        default: return weight;
+          case 'kg': return weight * 1000
+          case 'oz': return weight * 28.35
+          case 'lb': return weight * 453.7
+          default: return weight
         }
-      };
-      return category.items.filter(filter).reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0);
+      }
+      return category.items.filter(filter).reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0)
     },
-    convertToTotalsUnit(weight) {
+    convertToTotalsUnit (weight) {
       switch (this.list.totalsUnit) {
-      case 'kg': return Number(weight / 1000).toFixed(2);
-      case 'oz': return Number(weight / 28.35).toFixed(2);
-      case 'lb': return Number(weight * 0.002204).toFixed(2);
-      default: return weight;
+        case 'kg': return Number(weight / 1000).toFixed(2)
+        case 'oz': return Number(weight / 28.35).toFixed(2)
+        case 'lb': return Number(weight * 0.002204).toFixed(2)
+        default: return weight
       }
     },
-    calcWeight(filter) {
+    calcWeight (filter) {
       return this.convertToTotalsUnit(
-        this.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0));
+        this.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0))
     }
   },
-  created() {
-    if (this.categories.length == 0) this.addNewCategory();
+  created () {
+    if (this.categories.length === 0) this.addNewCategory()
   }
 }
 </script>

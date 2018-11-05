@@ -24,10 +24,10 @@ export default {
     }
   },
   methods: {
-    addNewGearItem() {
+    addNewGearItem () {
       if (this.newGearItem.name && this.newGearItem.weight) {
-        this.$emit('newGearItem', {...this.newGearItem});
-        this.newGearItem = {};
+        this.$emit('newGearItem', { ...this.newGearItem })
+        this.newGearItem = {}
       }
     }
   }

@@ -64,48 +64,48 @@ export default {
     totalWeight () {
       const toGrams = (weight, unit) => {
         switch (unit) {
-        case 'kg': return weight * 1000;
-        case 'oz': return weight * 28.35;
-        case 'lb': return weight * 453.7;
-        default: return weight;
+          case 'kg': return weight * 1000
+          case 'oz': return weight * 28.35
+          case 'lb': return weight * 453.7
+          default: return weight
         }
-      };
+      }
 
       const convertToTotalsUnit = (weight) => {
         switch (this.totalsUnit) {
-        case 'kg': return Number(weight/1000).toFixed(2);
-        case 'oz': return Number(weight/28.35).toFixed(2);
-        case 'lb': return Number(weight * 0.002204).toFixed(2);
-        default: return weight;
+          case 'kg': return Number(weight / 1000).toFixed(2)
+          case 'oz': return Number(weight / 28.35).toFixed(2)
+          case 'lb': return Number(weight * 0.002204).toFixed(2)
+          default: return weight
         }
-      };
+      }
 
       return convertToTotalsUnit(
-        this.category.items.reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0));
+        this.category.items.reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0))
     },
     totalQty () {
       return this.category.items.reduce((sum, item) => sum + item.qty, 0)
     }
   },
   methods: {
-    addNewItem(e) {
-      e.preventDefault();
-      this.category.items.push({weight: 0, qty: 1, unit: "g", type: ""});
+    addNewItem (e) {
+      e.preventDefault()
+      this.category.items.push({ weight: 0, qty: 1, unit: 'g', type: '' })
     },
-    deleteCategory(e) {
-      e.preventDefault();
-      this.$emit('deleteCategory');
+    deleteCategory (e) {
+      e.preventDefault()
+      this.$emit('deleteCategory')
     },
-    deleteItem(idx) {
-      this.category.items.splice(idx, 1);
-      this.$emit('categoryUpdated');
+    deleteItem (idx) {
+      this.category.items.splice(idx, 1)
+      this.$emit('categoryUpdated')
     },
-    updateCategory() {
-      this.$emit('categoryUpdated');
+    updateCategory () {
+      this.$emit('categoryUpdated')
     }
   },
-  mounted() {
-    this.$el.children[0].children[0].focus();
+  mounted () {
+    this.$el.children[0].children[0].focus()
   },
   props: {
     category: {
