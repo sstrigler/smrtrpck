@@ -141,6 +141,11 @@ a {
   color: #256537;
 }
 
+a:focus {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
 body {
   font-size: .875rem;
 }
