@@ -10,7 +10,7 @@
            @change="updateCategory"
            />
   </h2>
-  <table class="table table-responsive table-sm table-striped">
+  <table class="table table-sm table-responsive table-striped">
     <thead class="thead-dark">
       <tr>
         <th style="width: 30%; min-width: 6rem;">Name</th>
