@@ -22,7 +22,7 @@
     </div-->
   </div>
 
-  <table class="table table-respsonsive table-sm table-striped text-nowrap">
+  <table class="table table-respsonsive table-sm table-striped text-nowrap form-group">
     <thead class="thead-dark">
       <tr>
         <th style="width: 100%">Category</th>
@@ -65,6 +65,7 @@
         <td class="text-right bold">{{totalWeight}}</td>
         <td>
           <select
+            class="form-control form-control-sm"
             v-model="list.totalsUnit"
             @change="updateList"
             >
