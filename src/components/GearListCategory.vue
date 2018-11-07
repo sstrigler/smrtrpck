@@ -1,6 +1,7 @@
 <template>
 <div>
-  <h2><a :id="'cat-' + cat_id"></a><input type="text"
+  <h2><a :id="'cat-' + cat_id" class="anchor"></a>
+    <input type="text"
            title="Click to edit!"
            class="form-control"
            placeholder="New Category"
@@ -121,6 +122,13 @@ export default {
 </script>
 
 <style>
+.anchor {
+  display: block;
+  position: relative;
+  top: -48px;
+  visibility: hidden;
+}
+
 h2 input {
   font-size: 1.4rem !important;
   margin-left: -10px;
