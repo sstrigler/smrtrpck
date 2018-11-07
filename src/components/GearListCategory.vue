@@ -31,7 +31,7 @@
       </tbody>
     <tfoot>
       <tr>
-        <th colspan="2">
+        <th class="text-right" colspan="2">
           Total
         </th>
         <td class="sum text-right">{{totalWeight}}</td>
