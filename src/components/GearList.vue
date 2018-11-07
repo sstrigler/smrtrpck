@@ -22,11 +22,26 @@
     </div-->
   </div>
 
-  <table class="table table-respsonsive table-sm table-striped text-nowrap form-group">
+  <table
+    class="table table-respsonsive table-sm table-striped text-nowrap"
+    style="background-color: white; top: 4rem;"
+    :class="{ 'sticky-top': isStickyTop }">
     <thead class="thead-dark">
       <tr>
         <th style="width: 100%">Category</th>
-        <th colspan="2">Weight</th>
+        <th colspan="2">
+          Weight
+          <a class="float-right"
+             href="#"
+             title="Make stats stick to the top"
+             v-show="!isStickyTop"
+             @click="isStickyTop = true"><UnlockIcon class="feather"></UnlockIcon></a>
+          <a class="float-right"
+             href="#"
+             title="Release sticky stats"
+             v-show="isStickyTop"
+             @click="isStickyTop = false"><LockIcon class="feather"></LockIcon></a>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -96,10 +111,13 @@
 
 <script>
 import GearListCategory from './GearListCategory.vue'
+import { Lock, Unlock } from 'vue-feather-icon'
 
 export default {
   components: {
-    GearListCategory
+    GearListCategory,
+    LockIcon: Lock.default,
+    UnlockIcon: Unlock.default
   },
   computed: {
     wornWeight: function () { return this.calcWeight((item) => item.type === 'worn') },
@@ -111,6 +129,7 @@ export default {
   data: function () {
     return {
       isActive: false,
+      isStickyTop: false,
       gearListStore: this.$hoodie.store.withIdPrefix('gearList'),
 
       // [FIXME] if we don't keep this separate new list's view
