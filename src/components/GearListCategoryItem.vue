@@ -123,16 +123,7 @@ td input[type="number"].qty {
 }
 
 td .feather {
-  margin-top: 7px;
-  visibility: hidden;
-}
-
-tr:hover td .feather {
-  visibility: visible;
-}
-
-.delete-icon:hover {
-  stroke: red;
+  margin: 0.4rem;
 }
 
 td select {
