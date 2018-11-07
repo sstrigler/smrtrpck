@@ -67,7 +67,7 @@
         <td class="text-right font-weight-bold">{{consumableWeight}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
-      <tr>
+      <tr class="table-primary">
         <th class="text-right">Base Weight</th>
         <td class="text-right font-weight-bold">{{baseWeight}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
