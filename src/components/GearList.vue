@@ -35,12 +35,14 @@
              href="#"
              title="Make stats stick to the top"
              v-show="!isStickyTop"
-             @click="isStickyTop = true; $event.preventDefault();"><UnlockIcon class="feather"></UnlockIcon></a>
+             @click="isStickyTop = true; $event.preventDefault();">
+            <UnlockIcon class="feather"></UnlockIcon></a>
           <a class="float-right"
              href="#"
              title="Release sticky stats"
              v-show="isStickyTop"
-             @click="isStickyTop = false; $event.preventDefault();"><LockIcon class="feather"></LockIcon></a>
+             @click="isStickyTop = false; $event.preventDefault();">
+            <LockIcon class="feather"></LockIcon></a>
         </th>
       </tr>
     </thead>
