@@ -114,13 +114,26 @@ tr:nth-of-type(2n+1) td input:focus {
   background-color: #fff;
 }
 
+input[type="number"].weight {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number].weight::-webkit-inner-spin-button,
+input[type=number].weight::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
 td input[type="number"].weight {
-  width: 4.5rem;
+  width: 4rem;
 }
 
 td input[type="number"].qty {
-  width: 2.5rem;
+  width: 2.8rem;
 }
+
+input.qty::-webkit-inner-spin-button { margin-left: 0.2rem; }
 
 td .feather {
   margin: 0.4rem;
