@@ -23,9 +23,9 @@
   </div>
 
   <table
-    class="table table-respsonsive table-sm table-striped text-nowrap shadow-sm rounded"
+    class="table table-respsonsive table-sm table-striped text-nowrap"
     style="background-color: white; top: 4rem;"
-    :class="{ 'sticky-top': isStickyTop }">
+    :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
     <thead class="thead-dark">
       <tr>
         <th style="width: 100%">Category</th>
