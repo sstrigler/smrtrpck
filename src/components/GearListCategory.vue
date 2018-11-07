@@ -44,11 +44,11 @@
   </table>
   <div style="padding-bottom: 1rem;" >
     <a href="#"
-       @click="addNewItem">Add new item</a>
+       @click.prevent="addNewItem">Add new item</a>
     |
-    <a @click="deleteCategory"
-       href="#"
-       class="delete-button">Delete category</a>
+    <a href="#"
+       class="delete-button"
+        @click.prevent="deleteCategory">Delete category</a>
   </div>
 </div>
 </template>
@@ -89,11 +89,9 @@ export default {
   },
   methods: {
     addNewItem (e) {
-      e.preventDefault()
       this.category.items.push({ weight: 0, qty: 1, unit: 'g', type: '' })
     },
     deleteCategory (e) {
-      e.preventDefault()
       this.$emit('deleteCategory')
     },
     deleteItem (idx) {

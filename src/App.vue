@@ -18,7 +18,7 @@
           <span>Lists</span>
           <a class="d-flex align-items-center text-muted"
              href="#"
-             @click="addNewList"
+             @click.prevent="addNewList"
              title="Add new list">
             <plus-circle-icon class="feather"></plus-circle-icon>
           </a>
@@ -31,14 +31,15 @@
             <a class="nav-link"
                :class="{ active: currentList === idx }"
                href="#"
-               @click="setCurrentList(idx)">
+               @click.prevent="setCurrentList(idx)">
               <FileTextIcon class="feather"></FileTextIcon>{{list.name}}
               <a
-                v-show="currentList != idx"
-                @click="removeList($event, idx)"
                 href="#"
                 class="align-items-center text-muted"
-                title="Delete list"><MinusCircleIcon class="feather delete-icon"></MinusCircleIcon></a>
+                title="Delete list"
+                v-show="currentList != idx"
+                @click.prevent.stop="removeList(idx)"
+                ><MinusCircleIcon class="feather delete-icon"></MinusCircleIcon></a>
             </a>
           </li>
         </ul>
@@ -109,8 +110,7 @@ export default {
         }
       )
     },
-    removeList (e, idx) {
-      e.stopPropagation()
+    removeList (idx) {
       this.gearListStore.remove(this.lists[idx]).then(() => {
         if (idx < this.currentList) {
           this.setCurrentList(this.currentList - 1)

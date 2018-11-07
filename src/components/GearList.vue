@@ -35,13 +35,13 @@
              href="#"
              title="Make stats stick to the top"
              v-show="!isStickyTop"
-             @click="isStickyTop = true; $event.preventDefault();">
+             @click.prevent="isStickyTop = true">
             <UnlockIcon class="feather"></UnlockIcon></a>
           <a class="float-right"
              href="#"
              title="Release sticky stats"
              v-show="isStickyTop"
-             @click="isStickyTop = false; $event.preventDefault();">
+             @click.prevent="isStickyTop = false">
             <LockIcon class="feather"></LockIcon></a>
         </th>
       </tr>
@@ -106,7 +106,8 @@
     />
 
   <div style="padding-bottom: 1rem;">
-    <a href="#" @click="addNewCategory">Add new category</a>
+    <a href="#"
+       @click.prevent="addNewCategory">Add new category</a>
   </div>
 </div>
 </template>
@@ -147,8 +148,7 @@ export default {
     }
   },
   methods: {
-    addNewCategory (e) {
-      e.preventDefault()
+    addNewCategory () {
       this.categories.push({ items: [] })
     },
     deleteCategory (idx) {

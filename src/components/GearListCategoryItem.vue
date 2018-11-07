@@ -64,7 +64,10 @@
       </select>
     </td>
     <td>
-      <a class="d-flex align-items-center text-muted" href="#" @click="deleteItem" title="Delete item">
+      <a class="d-flex align-items-center text-muted"
+         href="#"
+         title="Delete item"
+         @click.prevent="deleteItem">
         <x-circle-icon class="feather delete-icon"></x-circle-icon>
       </a>
     </td>
@@ -83,7 +86,6 @@ export default {
   },
   methods: {
     deleteItem (e) {
-      e.preventDefault()
       this.$emit('deleteItem')
     },
     updateItem () {
