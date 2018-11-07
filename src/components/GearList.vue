@@ -23,7 +23,7 @@
   </div>
 
   <table
-    class="table table-respsonsive table-sm table-striped text-nowrap"
+    class="table table-respsonsive table-sm table-striped text-nowrap shadow-sm rounded"
     style="background-color: white; top: 4rem;"
     :class="{ 'sticky-top': isStickyTop }">
     <thead class="thead-dark">
