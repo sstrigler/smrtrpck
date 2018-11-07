@@ -16,7 +16,10 @@
 
         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Lists</span>
-          <a class="d-flex align-items-center text-muted" href="#" @click="addNewList" title="Add new list">
+          <a class="d-flex align-items-center text-muted"
+             href="#"
+             @click="addNewList"
+             title="Add new list">
             <plus-circle-icon class="feather"></plus-circle-icon>
           </a>
         </h6>
@@ -30,7 +33,12 @@
                href="#"
                @click="setCurrentList(idx)">
               <FileTextIcon class="feather"></FileTextIcon>{{list.name}}
-              <a v-show="currentList != idx" @click="removeList($event, idx)" href="#" class="align-items-center text-muted" title="Delete list"><MinusCircleIcon class="feather delete-icon"></MinusCircleIcon></a>
+              <a
+                v-show="currentList != idx"
+                @click="removeList($event, idx)"
+                href="#"
+                class="align-items-center text-muted"
+                title="Delete list"><MinusCircleIcon class="feather delete-icon"></MinusCircleIcon></a>
             </a>
           </li>
         </ul>
