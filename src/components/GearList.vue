@@ -35,34 +35,34 @@
         :key="idx"
         >
         <td>{{category.name}}</td>
-        <td class="text-right bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
-        <td class="bold">{{list.totalsUnit}}</td>
+        <td class="text-right font-weight-bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
+        <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
-        <th>Worn</th>
-        <td class="text-right bold">{{wornWeight}}</td>
-        <td class="bold">{{list.totalsUnit}}</td>
+        <th class="text-right">Worn</th>
+        <td class="text-right font-weight-bold">{{wornWeight}}</td>
+        <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
-        <th>Consumables</th>
-        <td class="text-right bold">{{consumableWeight}}</td>
-        <td class="bold">{{list.totalsUnit}}</td>
+        <th class="text-right">Consumables</th>
+        <td class="text-right font-weight-bold">{{consumableWeight}}</td>
+        <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
-        <th>Base Weight</th>
-        <td class="text-right bold">{{baseWeight}}</td>
-        <td class="bold">{{list.totalsUnit}}</td>
+        <th class="text-right">Base Weight</th>
+        <td class="text-right font-weight-bold">{{baseWeight}}</td>
+        <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
-        <th>Packed</th>
-        <td class="text-right bold">{{packedWeight}}</td>
-        <td class="bold">{{list.totalsUnit}}</td>
+        <th class="text-right">Packed</th>
+        <td class="text-right font-weight-bold">{{packedWeight}}</td>
+        <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
       <tr>
-        <th>Total</th>
-        <td class="text-right bold">{{totalWeight}}</td>
+        <th class="text-right va-middle">Total</th>
+        <td class="text-right font-weight-bold va-middle">{{totalWeight}}</td>
         <td>
           <select
             class="form-control form-control-sm"
@@ -179,11 +179,7 @@ h1.h2 input {
   border-color: #fff;
 }
 
-tfoot th {
-  text-align: right;
-}
-
-td.bold {
-  font-weight: bold;
+.va-middle {
+  vertical-align: middle !important;
 }
 </style>
