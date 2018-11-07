@@ -1,7 +1,6 @@
 <template>
 <div>
-  <h2>
-    <input type="text"
+  <h2><a :id="'cat-' + cat_id"></a><input type="text"
            title="Click to edit!"
            class="form-control"
            placeholder="New Category"
@@ -103,7 +102,7 @@ export default {
     }
   },
   mounted () {
-    this.$el.children[0].children[0].focus()
+    this.$el.children[0].children[1].focus()
   },
   props: {
     category: {
@@ -112,6 +111,10 @@ export default {
     },
     totalsUnit: {
       type: String
+    },
+    cat_id: {
+      type: String,
+      required: true
     }
   }
 }

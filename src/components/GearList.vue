@@ -51,7 +51,7 @@
         v-for="(category, idx) in categories"
         :key="idx"
         >
-        <td>{{category.name}}</td>
+        <td><a :href="'#cat-' + list._id + idx">{{category.name}}</a></td>
         <td class="text-right font-weight-bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
       </tr>
@@ -101,6 +101,7 @@
     :key="idx"
     :category="category"
     :totalsUnit="list.totalsUnit"
+    :cat_id="list._id + idx"
     @categoryUpdated="updateList"
     @deleteCategory="deleteCategory(idx)"
     />
