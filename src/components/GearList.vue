@@ -169,7 +169,7 @@ export default {
       this.updateList()
     },
     deleteList () {
-      this.$emit("deleteList", this.list);
+      this.$emit('deleteList', this.list)
     },
     updateList () {
       this.list.categories = this.categories // re-assign, see above

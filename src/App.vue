@@ -58,14 +58,13 @@
 
 <script>
 import GearList from './components/GearList.vue'
-import { PlusCircle, FileText, MinusCircle } from 'vue-feather-icon'
+import { PlusCircle, FileText } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
     PlusCircleIcon: PlusCircle.default,
-    FileTextIcon: FileText.default,
-    MinusCircleIcon: MinusCircle.default
+    FileTextIcon: FileText.default
   },
   created: function () {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList')
@@ -104,8 +103,7 @@ export default {
       )
     },
     deleteList (list) {
-      const idx = this.lists.indexOf(list);
-      console.log(idx);
+      const idx = this.lists.indexOf(list)
       this.gearListStore.remove(list).then(() => {
         this.lists.splice(idx, 1)
         this.setCurrentList(0)

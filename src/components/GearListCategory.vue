@@ -62,19 +62,19 @@ export default {
     totalWeight () {
       const toGrams = (weight, unit) => {
         switch (unit) {
-        case 'kg': return weight * 1000
-        case 'oz': return weight * 28.35
-        case 'lb': return weight * 453.7
-        default: return weight
+          case 'kg': return weight * 1000
+          case 'oz': return weight * 28.35
+          case 'lb': return weight * 453.7
+          default: return weight
         }
       }
 
       const convertToTotalsUnit = (weight) => {
         switch (this.totalsUnit) {
-        case 'kg': return Number(weight / 1000).toFixed(2)
-        case 'oz': return Number(weight / 28.35).toFixed(2)
-        case 'lb': return Number(weight * 0.002204).toFixed(2)
-        default: return weight
+          case 'kg': return Number(weight / 1000).toFixed(2)
+          case 'oz': return Number(weight / 28.35).toFixed(2)
+          case 'lb': return Number(weight * 0.002204).toFixed(2)
+          default: return weight
         }
       }
 
