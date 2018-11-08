@@ -19,7 +19,7 @@
 
   <div class="row">
     <nav class="col-md-2 d-md-block bg-light sidebar"
-         :class="{ 'active': menuActive }" id="sidebar">
+         :class="{ 'active': menuActive }">
       <div class="sidebar-sticky">
 
         <h6 class="sidebar-heading d-flex justify-content-start align-items-center px-3 mt-4 mb-1 text-muted">
