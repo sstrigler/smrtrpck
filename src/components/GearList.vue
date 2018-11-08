@@ -20,6 +20,8 @@
         Versions
       </button>
     </div-->
+    <button class="btn btn-danger"
+            @click="deleteList">Delete list</button>
   </div>
 
   <table
@@ -117,12 +119,8 @@
     @categoryUpdated="updateList"
     />
 
-  <div class="d-flex justify-content-between pt-3 mb-3 border-top">
-    <button class="btn btn-secondary"
-            @click="addNewCategory">Add new category</button>
-    <button class="btn btn-danger"
-            @click="deleteList">Delete list</button>
-  </div>
+  <button class="btn btn-secondary mt-3 mb-3"
+          @click="addNewCategory">Add new category</button>
 </div>
 </template>
 
