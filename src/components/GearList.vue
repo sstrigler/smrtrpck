@@ -30,7 +30,13 @@
     :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
     <thead>
       <tr class="table-info">
-        <th style="width: 100%">Category</th>
+        <th style="width: 100%">Category
+          <button class="feather-button"
+                  title="Add new category"
+                  @click="addNewCategory">
+            <plus-circle-icon class="feather"></plus-circle-icon>
+          </button>
+        </th>
         <th colspan="2">
           Weight
         </th>
@@ -118,20 +124,18 @@
     :cat_id="list._id + idx"
     @categoryUpdated="updateList"
     />
-
-  <button class="btn btn-secondary mt-3 mb-3"
-          @click="addNewCategory">Add new category</button>
 </div>
 </template>
 
 <script>
 import GearListCategory from './GearListCategory.vue'
-import { XCircle, Lock, Unlock } from 'vue-feather-icon'
+import { PlusCircle, XCircle, Lock, Unlock } from 'vue-feather-icon'
 
 export default {
   components: {
     GearListCategory,
     LockIcon: Lock.default,
+    PlusCircleIcon: PlusCircle.default,
     UnlockIcon: Unlock.default,
     XCircleIcon: XCircle.default
   },
