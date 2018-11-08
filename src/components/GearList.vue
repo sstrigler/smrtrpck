@@ -26,8 +26,8 @@
     class="table table-respsonsive table-sm table-striped text-nowrap"
     style="background-color: white; top: 4rem;"
     :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
-    <thead class="thead-dark">
-      <tr>
+    <thead>
+      <tr class="table-info">
         <th style="width: 100%">Category</th>
         <th colspan="2">
           Weight
