@@ -253,6 +253,10 @@ body {
   cursor: pointer;
 }
 
+.feather-button:hover .feather {
+  stroke: #256537;
+}
+
 .delete-button:hover .feather,
 .delete-button:focus .feather {
   stroke: red;
