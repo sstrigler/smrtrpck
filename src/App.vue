@@ -149,6 +149,10 @@ body {
   stroke: #999;
 }
 
+.table-info .feather {
+  stroke: #666;
+}
+
 .feather-button {
   border: 0;
   padding: 0;
