@@ -171,9 +171,6 @@ export default {
     deleteList () {
       this.$emit("deleteList", this.list);
     },
-    setActive () {
-      this.isActive = true
-    },
     updateList () {
       this.list.categories = this.categories // re-assign, see above
       this.gearListStore.updateOrAdd(this.list)
