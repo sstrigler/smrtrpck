@@ -65,8 +65,8 @@
     </td>
     <td class="p-2">
       <button class="feather-button delete-button"
-         title="Delete item"
-         @click="deleteItem">
+              title="Delete item"
+              @click="deleteItem">
         <x-circle-icon class="feather"></x-circle-icon>
       </button>
     </td>
