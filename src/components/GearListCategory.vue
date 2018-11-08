@@ -88,10 +88,10 @@ export default {
     }
   },
   methods: {
-    addNewItem (e) {
+    addNewItem () {
       this.category.items.push({ weight: 0, qty: 1, unit: 'g', type: '' })
     },
-    deleteCategory (e) {
+    deleteCategory () {
       this.$emit('deleteCategory')
     },
     deleteItem (idx) {

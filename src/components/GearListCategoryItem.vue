@@ -85,7 +85,7 @@ export default {
     this.$el.children[0].children[0].focus()
   },
   methods: {
-    deleteItem (e) {
+    deleteItem () {
       this.$emit('deleteItem')
     },
     updateItem () {
