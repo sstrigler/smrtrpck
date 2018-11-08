@@ -55,7 +55,7 @@
     <tbody>
       <tr v-for="(category, idx) in categories"
           :key="idx">
-        <td><a :href="'#cat-' + list._id + idx">{{category.name}}</a></td>
+        <td><a :href="'#cat-' + list._id + idx">{{category.name?  category.name : "Unnamed"}}</a></td>
         <td class="text-right font-weight-bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
         <td class="font-weight-bold ">{{list.totalsUnit}}</td>
         <td class="">
