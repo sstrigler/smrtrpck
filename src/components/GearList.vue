@@ -55,10 +55,10 @@
         >
         <td><a :href="'#cat-' + list._id + idx">{{category.name}}</a></td>
         <td class="text-right font-weight-bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
-<td class="font-weight-bold ">{{list.totalsUnit}}</td>
+        <td class="font-weight-bold ">{{list.totalsUnit}}</td>
         <td class="">
           <button class="feather-button delete-button"
-                  title="Delete item"
+                  title="Delete category"
                   @click="deleteCategory(idx)">
             <x-circle-icon class="feather"></x-circle-icon>
           </button>
