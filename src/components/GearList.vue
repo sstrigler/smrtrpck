@@ -205,6 +205,11 @@ export default {
   },
   created () {
     if (this.categories.length === 0) this.addNewCategory()
+  },
+  mounted() {
+    this.$nextTick(function () {
+      this.$emit("listMounted", this.list)
+    })
   }
 }
 </script>

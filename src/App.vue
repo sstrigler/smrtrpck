@@ -1,7 +1,14 @@
 <template>
 <div id="app" class="container-fluid">
   <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">smrtrpck (alpha)</a>
+    <div class="navbar-brand col-sm-3 col-md-2 mr-0">
+    <button class="btn btn-outline-dark mr-2 d-md-none"
+            title="Expand menu"
+            @click="menuActive = !menuActive">
+      <MenuIcon class="feather"></MenuIcon>
+    </button>
+    <a href="#">smrtrpck</a>
+    </div>
     <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
@@ -11,7 +18,8 @@
   </nav>
 
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav class="col-md-2 d-md-block bg-light sidebar"
+         :class="{ 'active': menuActive }" id="sidebar">
       <div class="sidebar-sticky">
 
         <h6 class="sidebar-heading d-flex justify-content-start align-items-center px-3 mt-4 mb-1 text-muted">
@@ -50,6 +58,7 @@
       <GearList v-for="list in lists"
                 :key="list._id"
                 :list="list"
+                @listMounted="listMounted"
                 @deleteList="deleteList"/>
     </main>
   </div>
@@ -58,11 +67,12 @@
 
 <script>
 import GearList from './components/GearList.vue'
-import { PlusCircle, FileText } from 'vue-feather-icon'
+import { Menu, PlusCircle, FileText } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
+    MenuIcon: Menu.default,
     PlusCircleIcon: PlusCircle.default,
     FileTextIcon: FileText.default
   },
@@ -82,14 +92,12 @@ export default {
         () => this.addNewList())
     })
   },
-  updated: function () {
-    this.setCurrentList(this.smrtrpck.lastList)
-  },
   data: function () {
     return {
       lists: [],
       currentList: null,
-      smrtrpck: { _id: 'smrtrpck' }
+      menuActive: false,
+      smrtrpck: { _id: 'smrtrpck', lastList: 0 }
     }
   },
   methods: {
@@ -109,12 +117,18 @@ export default {
         this.setCurrentList(0)
       })
     },
+    listMounted (list) {
+      const idx = this.lists.indexOf(list)
+      if (idx === this.smrtrpck.lastList)
+        this.setCurrentList(idx)
+    },
     setCurrentList (idx) {
       this.currentList = idx
       this.$children.forEach(
         child => {
           if (child.list) { child.isActive = child.list === this.lists[idx] }
         })
+      this.menuActive = false;
       if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== idx) {
         this.smrtrpck.lastList = idx
         this.$hoodie.store.update(this.smrtrpck)
@@ -179,13 +193,34 @@ body {
 
 .sidebar {
   position: fixed;
+  left: -100%;
+  -webkit-transition: left 0.3s; /* Safari */
+  transition: left 0.5s;
   top: 0;
   bottom: 0;
-  left: 0;
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
+
+@media (min-width:576px) {
+  .sidebar {
+    left: -100%;
+  }
+}
+
+@media (min-width:768px) {
+  .sidebar {
+    position: relative;
+    left: 0;
+    width: inherit;
+  }
+}
+
+.sidebar.active {
+  left: 0;
+}
+
 
 .sidebar-sticky {
   position: relative;
@@ -247,6 +282,17 @@ body {
   font-size: 1rem;
   background-color: rgba(0, 0, 0, .25);
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar-brand a,
+.navbar-brand a:hover,
+.navbar-brand a:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-brand .feather {
+  stroke: #fff
 }
 
 .navbar .form-control {
