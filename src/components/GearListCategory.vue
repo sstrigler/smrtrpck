@@ -45,9 +45,9 @@
   </table>
   <div class="d-flex justify-content-between">
     <button
-      class="btn btn-sm btn-outline-secondary"
+      class="btn btn-primary"
       @click="addNewItem">Add new item</button>
-    <button class="btn btn-sm btn-outline-warning float right"
+    <button class="btn btn-warning float right"
             @click="deleteCategory">Delete category</button>
   </div>
 </div>
