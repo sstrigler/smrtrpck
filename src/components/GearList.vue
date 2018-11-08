@@ -31,18 +31,18 @@
         <th style="width: 100%">Category</th>
         <th colspan="2">
           Weight
-          <a class="float-right"
-             href="#"
-             title="Make stats stick to the top"
-             v-show="!isStickyTop"
-             @click.prevent="isStickyTop = true">
-            <UnlockIcon class="feather"></UnlockIcon></a>
-          <a class="float-right"
-             href="#"
-             title="Release sticky stats"
-             v-show="isStickyTop"
-             @click.prevent="isStickyTop = false">
-            <LockIcon class="feather"></LockIcon></a>
+        </th>
+        <th>
+          <button class="feather-button"
+                  title="Make stats stick to the top"
+                  v-show="!isStickyTop"
+                  @click="isStickyTop = true">
+            <UnlockIcon class="feather"></UnlockIcon></button>
+          <button class="feather-button"
+                  title="Release sticky stats"
+                  v-show="isStickyTop"
+                  @click="isStickyTop = false">
+            <LockIcon class="feather"></LockIcon></button>
         </th>
       </tr>
     </thead>
@@ -53,7 +53,14 @@
         >
         <td><a :href="'#cat-' + list._id + idx">{{category.name}}</a></td>
         <td class="text-right font-weight-bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
-        <td class="font-weight-bold">{{list.totalsUnit}}</td>
+<td class="font-weight-bold ">{{list.totalsUnit}}</td>
+        <td class="">
+          <button class="feather-button delete-button"
+                  title="Delete item"
+                  @click="deleteCategory(idx)">
+            <x-circle-icon class="feather"></x-circle-icon>
+          </button>
+        </td>
       </tr>
     </tbody>
     <tfoot>
@@ -61,21 +68,25 @@
         <th class="text-right">Worn</th>
         <td class="text-right font-weight-bold">{{wornWeight}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
+        <td/>
       </tr>
       <tr>
         <th class="text-right">Consumables</th>
         <td class="text-right font-weight-bold">{{consumableWeight}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
+        <td/>
       </tr>
       <tr class="table-primary">
         <th class="text-right">Base Weight</th>
         <td class="text-right font-weight-bold">{{baseWeight}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
+        <td/>
       </tr>
       <tr>
         <th class="text-right">Packed</th>
         <td class="text-right font-weight-bold">{{packedWeight}}</td>
         <td class="font-weight-bold">{{list.totalsUnit}}</td>
+        <td/>
       </tr>
       <tr>
         <th class="text-right va-middle">Total</th>
@@ -92,6 +103,7 @@
             <option value="lb">lb</option>
           </select>
         </td>
+        <td/>
       </tr>
     </tfoot>
   </table>
@@ -103,7 +115,6 @@
     :totalsUnit="list.totalsUnit"
     :cat_id="list._id + idx"
     @categoryUpdated="updateList"
-    @deleteCategory="deleteCategory(idx)"
     />
 
   <div class="d-flex justify-content-between pt-3 mb-3 border-top">
@@ -117,13 +128,14 @@
 
 <script>
 import GearListCategory from './GearListCategory.vue'
-import { Lock, Unlock } from 'vue-feather-icon'
+import { XCircle, Lock, Unlock } from 'vue-feather-icon'
 
 export default {
   components: {
     GearListCategory,
     LockIcon: Lock.default,
-    UnlockIcon: Unlock.default
+    UnlockIcon: Unlock.default,
+    XCircleIcon: XCircle.default
   },
   computed: {
     wornWeight: function () { return this.calcWeight((item) => item.type === 'worn') },

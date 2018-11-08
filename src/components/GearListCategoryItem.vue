@@ -63,10 +63,10 @@
         <option value="consumable">consumable</option>
       </select>
     </td>
-    <td>
-      <button class="delete-button"
+    <td class="p-2">
+      <button class="feather-button delete-button"
          title="Delete item"
-         @click.prevent="deleteItem">
+         @click="deleteItem">
         <x-circle-icon class="feather"></x-circle-icon>
       </button>
     </td>
@@ -135,10 +135,6 @@ td input[type="number"].qty {
 }
 
 input.qty::-webkit-inner-spin-button { margin-left: 0.2rem; }
-
-td .feather {
-  margin: 0.4rem;
-}
 
 td select {
   width: auto !important;

@@ -47,8 +47,6 @@
     <button
       class="btn btn-primary"
       @click="addNewItem">Add new item</button>
-    <button class="btn btn-warning float right"
-            @click="deleteCategory">Delete category</button>
   </div>
 </div>
 </template>
@@ -90,9 +88,6 @@ export default {
   methods: {
     addNewItem () {
       this.category.items.push({ weight: 0, qty: 1, unit: 'g', type: '' })
-    },
-    deleteCategory () {
-      this.$emit('deleteCategory')
     },
     deleteItem (idx) {
       this.category.items.splice(idx, 1)

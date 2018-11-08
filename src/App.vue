@@ -245,14 +245,14 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-.delete-button {
+.feather-button {
   border: 0;
   padding: 0;
   margin: 0;
   background-color: transparent;
 }
 
-.delete-button:hover {
+.feather-button:hover {
   cursor: pointer;
 }
 
