@@ -119,8 +119,9 @@ export default {
     },
     listMounted (list) {
       const idx = this.lists.indexOf(list)
-      if (idx === this.smrtrpck.lastList)
+      if (idx === this.smrtrpck.lastList) {
         this.setCurrentList(idx)
+      }
     },
     setCurrentList (idx) {
       this.currentList = idx
@@ -128,7 +129,7 @@ export default {
         child => {
           if (child.list) { child.isActive = child.list === this.lists[idx] }
         })
-      this.menuActive = false;
+      this.menuActive = false
       if (!this.smrtrpck.lastList || this.smrtrpck.lastList !== idx) {
         this.smrtrpck.lastList = idx
         this.$hoodie.store.update(this.smrtrpck)
@@ -221,7 +222,6 @@ body {
   left: 0;
   z-index: 1021;
 }
-
 
 .sidebar-sticky {
   position: relative;
