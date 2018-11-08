@@ -24,9 +24,8 @@
             @click="deleteList">Delete list</button>
   </div>
 
-  <table
-    class="table table-respsonsive table-sm table-striped text-nowrap stats-table"
-    :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
+  <table class="table table-respsonsive table-sm table-striped text-nowrap bg-white stats-table"
+         :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
     <thead>
       <tr class="table-info">
         <th class="w-100">Category
@@ -222,7 +221,6 @@ h1.h2 input {
 }
 
 .stats-table {
-  background-color: white;
   top: 4rem;
 }
 
