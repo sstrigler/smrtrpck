@@ -33,13 +33,6 @@
                href="#"
                @click.prevent="setCurrentList(idx)">
               <FileTextIcon class="feather"></FileTextIcon>{{list.name}}
-              <a
-                href="#"
-                class="align-items-center text-muted"
-                title="Delete list"
-                v-show="currentList != idx"
-                @click.prevent.stop="removeList(idx)"
-                ><MinusCircleIcon class="feather delete-icon"></MinusCircleIcon></a>
             </a>
           </li>
         </ul>
@@ -57,7 +50,8 @@
       <GearList v-for="(list, idx) in lists"
                 :key="idx"
                 :isActive="idx === 0"
-                :list="list"/>
+                :list="list"
+                @deleteList="deleteList"/>
     </main>
   </div>
 </div>
@@ -110,12 +104,12 @@ export default {
         }
       )
     },
-    removeList (idx) {
-      this.gearListStore.remove(this.lists[idx]).then(() => {
-        if (idx < this.currentList) {
-          this.setCurrentList(this.currentList - 1)
-        }
+    deleteList (list) {
+      const idx = this.lists.indexOf(list);
+      console.log(idx);
+      this.gearListStore.remove(list).then(() => {
         this.lists.splice(idx, 1)
+        this.setCurrentList(0)
       })
     },
     setCurrentList (idx) {
@@ -219,6 +213,7 @@ body {
 
 [role="main"] {
   padding-top: 48px; /* Space for fixed navbar */
+  padding-bottom: 1rem;
 }
 
 /*

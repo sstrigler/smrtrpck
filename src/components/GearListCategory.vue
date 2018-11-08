@@ -1,6 +1,7 @@
 <template>
-<div>
-  <h2><a :id="'cat-' + cat_id" class="anchor"></a>
+<div class="pt-3 pb-2 mb-3">
+  <h2 class="h2">
+    <a :id="'cat-' + cat_id" class="anchor"></a>
     <input type="text"
            title="Click to edit!"
            class="form-control"
@@ -10,7 +11,7 @@
            @change="updateCategory"
            />
   </h2>
-  <table class="table table-sm table-responsive table-striped">
+  <table class="table table-sm table-responsive table-striped mb-0">
     <thead class="thead-dark">
       <tr>
         <th style="width: 30%; min-width: 6rem;">Name</th>
@@ -42,13 +43,12 @@
       </tr>
     </tfoot>
   </table>
-  <div style="padding-bottom: 1rem;" >
-    <a href="#"
-       @click.prevent="addNewItem">Add new item</a>
-    |
-    <a href="#"
-       class="delete-button"
-        @click.prevent="deleteCategory">Delete category</a>
+  <div class="d-flex justify-content-between">
+    <button
+      class="btn btn-sm btn-outline-secondary"
+      @click="addNewItem">Add new item</button>
+    <button class="btn btn-sm btn-outline-warning float right"
+            @click="deleteCategory">Delete category</button>
   </div>
 </div>
 </template>
@@ -64,19 +64,19 @@ export default {
     totalWeight () {
       const toGrams = (weight, unit) => {
         switch (unit) {
-          case 'kg': return weight * 1000
-          case 'oz': return weight * 28.35
-          case 'lb': return weight * 453.7
-          default: return weight
+        case 'kg': return weight * 1000
+        case 'oz': return weight * 28.35
+        case 'lb': return weight * 453.7
+        default: return weight
         }
       }
 
       const convertToTotalsUnit = (weight) => {
         switch (this.totalsUnit) {
-          case 'kg': return Number(weight / 1000).toFixed(2)
-          case 'oz': return Number(weight / 28.35).toFixed(2)
-          case 'lb': return Number(weight * 0.002204).toFixed(2)
-          default: return weight
+        case 'kg': return Number(weight / 1000).toFixed(2)
+        case 'oz': return Number(weight / 28.35).toFixed(2)
+        case 'lb': return Number(weight * 0.002204).toFixed(2)
+        default: return weight
         }
       }
 
@@ -138,13 +138,5 @@ h2 input {
 tfoot td.sum {
   font-weight:bold;
   padding-right: 1.5rem;
-}
-
-.delete-button:hover {
-  color: red;
-}
-
-.delete-button:focus {
-  color: red;
 }
 </style>

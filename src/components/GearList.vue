@@ -106,9 +106,11 @@
     @deleteCategory="deleteCategory(idx)"
     />
 
-  <div style="padding-bottom: 1rem;">
-    <a href="#"
-       @click.prevent="addNewCategory">Add new category</a>
+  <div class="d-flex justify-content-between pt-3 mb-3 border-top ">
+    <button class="btn btn-outline-secondary"
+            @click="addNewCategory">Add new category</button>
+    <button class="btn btn-danger"
+            @click="deleteList">Delete list</button>
   </div>
 </div>
 </template>
@@ -155,6 +157,9 @@ export default {
     deleteCategory (idx) {
       this.categories.splice(idx, 1)
       this.updateList()
+    },
+    deleteList () {
+      this.$emit("deleteList", this.list);
     },
     setActive () {
       this.isActive = true
