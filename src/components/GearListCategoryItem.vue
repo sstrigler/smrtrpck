@@ -6,8 +6,7 @@
              placeholder="Name"
              v-model.trim="item.name"
              @keypress.enter="$event.target.blur()"
-             @change="updateItem"
-             />
+             @change="updateItem"/>
     </td>
     <td >
       <input type="text"
@@ -15,8 +14,7 @@
              placeholder="Description"
              v-model.trim="item.description"
              @keypress.enter="$event.target.blur()"
-             @change="updateItem"
-             />
+             @change="updateItem"/>
     </td>
     <td>
       <input type="number"
@@ -27,15 +25,12 @@
              placeholder="Weight"
              v-model.number="item.weight"
              @keypress.enter="$event.target.blur()"
-             @change="updateItem"
-             />
+             @change="updateItem"/>
     </td>
     <td>
-      <select
-        class="form-control form-control-sm"
-        v-model="item.unit"
-        @change="updateItem"
-        >
+      <select class="form-control form-control-sm"
+              v-model="item.unit"
+              @change="updateItem">
         <option value="g">g</option>
         <option value="kg">kg</option>
         <option value="oz">oz</option>
@@ -49,15 +44,12 @@
              placeholder="Qty"
              v-model.number="item.qty"
              @keypress.enter="$event.target.blur()"
-             @change="updateItem"
-             />
+             @change="updateItem"/>
     </td>
     <td>
-      <select
-        class="form-control form-control-sm"
-        v-model="item.type"
-        @change="updateItem"
-        >
+      <select class="form-control form-control-sm"
+              v-model="item.type"
+              @change="updateItem">
         <option value="">regular</option>
         <option value="worn">worn</option>
         <option value="consumable">consumable</option>
