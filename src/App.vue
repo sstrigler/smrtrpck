@@ -149,6 +149,26 @@ body {
   stroke: #999;
 }
 
+.feather-button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.feather-button:hover {
+  cursor: pointer;
+}
+
+.feather-button:hover .feather {
+  stroke: #256537;
+}
+
+.delete-button:hover .feather,
+.delete-button:focus .feather {
+  stroke: red;
+}
+
 /*
  * Sidebar
  */
@@ -240,25 +260,5 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
-
-.feather-button {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-}
-
-.feather-button:hover {
-  cursor: pointer;
-}
-
-.feather-button:hover .feather {
-  stroke: #256537;
-}
-
-.delete-button:hover .feather,
-.delete-button:focus .feather {
-  stroke: red;
 }
 </style>
