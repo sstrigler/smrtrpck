@@ -25,12 +25,11 @@
   </div>
 
   <table
-    class="table table-respsonsive table-sm table-striped text-nowrap"
-    style="background-color: white; top: 4rem;"
+    class="table table-respsonsive table-sm table-striped text-nowrap stats-table"
     :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
     <thead>
       <tr class="table-info">
-        <th style="width: 100%">Category
+        <th class="w-100">Category
           <button class="feather-button"
                   title="Add new category"
                   @click="addNewCategory">
@@ -220,6 +219,11 @@ h1.h2 input {
   height: 3.0rem !important;
   margin-left: -10px;
   border-color: #fff;
+}
+
+.stats-table {
+  background-color: white;
+  top: 4rem;
 }
 
 .va-middle {
