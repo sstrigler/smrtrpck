@@ -234,7 +234,7 @@ body {
 
 [role="main"] {
   padding-top: 48px; /* Space for fixed navbar */
-  padding-bottom: 1rem;
+  padding-bottom: 1.5rem;
 }
 
 /*
