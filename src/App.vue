@@ -47,9 +47,8 @@
       </div>
     </nav>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <GearList v-for="(list, idx) in lists"
-                :key="idx"
-                :isActive="idx === 0"
+      <GearList v-for="list in lists"
+                :key="list._id"
                 :list="list"
                 @deleteList="deleteList"/>
     </main>
