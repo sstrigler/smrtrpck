@@ -219,6 +219,7 @@ body {
 
 .sidebar.active {
   left: 0;
+  z-index: 1021;
 }
 
 
