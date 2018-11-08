@@ -1,5 +1,5 @@
 <template>
-<div class="pt-3 pb-2 mb-3">
+<div class="pt-3">
   <h2 class="h2">
     <a :id="'cat-' + cat_id" class="anchor"></a>
     <input type="text"
@@ -44,7 +44,7 @@
     </tfoot>
   </table>
   <div class="d-flex justify-content-end">
-    <button class="btn btn-primary"
+    <button class="btn btn-sm btn-primary"
             @click="addNewItem">Add new item</button>
   </div>
 </div>
