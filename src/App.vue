@@ -54,7 +54,7 @@
         <Inventory/-->
       </div>
     </nav>
-    <main role="main" class="col-md-10 px-4">
+    <main role="main" class="col-md-10 px-2">
       <GearList v-for="list in lists"
                 :key="list._id"
                 :list="list"

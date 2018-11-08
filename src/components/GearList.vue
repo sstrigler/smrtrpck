@@ -1,5 +1,5 @@
 <template>
-<div :class="{ 'd-none': !isActive }">
+<div class="container-fluid" :class="{ 'd-none': !isActive }">
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">
       <input type="text"
@@ -23,95 +23,99 @@
     <button class="btn btn-danger"
             @click="deleteList">Delete list</button>
   </div>
-
-  <table class="table table-respsonsive table-sm table-striped text-nowrap bg-white stats-table"
-         :class="{ 'sticky-top': isStickyTop , 'shadow-sm': isStickyTop , 'rounded': isStickyTop }">
-    <thead>
-      <tr class="table-info">
-        <th class="w-100">Category
-          <button class="feather-button"
-                  title="Add new category"
-                  @click="addNewCategory">
-            <plus-circle-icon class="feather"></plus-circle-icon>
-          </button>
-        </th>
-        <th colspan="2">
-          Weight
-        </th>
-        <th>
-          <button class="feather-button"
-                  title="Make stats stick to the top"
-                  v-show="!isStickyTop"
-                  @click="isStickyTop = true">
-            <UnlockIcon class="feather"></UnlockIcon></button>
-          <button class="feather-button"
-                  title="Release sticky stats"
-                  v-show="isStickyTop"
-                  @click="isStickyTop = false">
-            <LockIcon class="feather"></LockIcon></button>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(category, idx) in categories"
-          :key="idx">
-        <td><a :href="'#cat-' + list._id + idx">{{category.name?  category.name : "Unnamed"}}</a></td>
-        <td class="text-right font-weight-bold">{{convertToTotalsUnit(categoryWeight(category, () => true))}}</td>
-        <td class="font-weight-bold ">{{list.totalsUnit}}</td>
-        <td class="">
-          <button class="feather-button delete-button"
-                  title="Delete category"
-                  @click="deleteCategory(idx)">
-            <x-circle-icon class="feather"></x-circle-icon>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th class="text-right">Worn</th>
-        <td class="text-right font-weight-bold">{{wornWeight}}</td>
-        <td class="font-weight-bold">{{list.totalsUnit}}</td>
-        <td/>
-      </tr>
-      <tr>
-        <th class="text-right">Consumables</th>
-        <td class="text-right font-weight-bold">{{consumableWeight}}</td>
-        <td class="font-weight-bold">{{list.totalsUnit}}</td>
-        <td/>
-      </tr>
-      <tr class="table-primary">
-        <th class="text-right">Base Weight</th>
-        <td class="text-right font-weight-bold">{{baseWeight}}</td>
-        <td class="font-weight-bold">{{list.totalsUnit}}</td>
-        <td/>
-      </tr>
-      <tr>
-        <th class="text-right">Packed</th>
-        <td class="text-right font-weight-bold">{{packedWeight}}</td>
-        <td class="font-weight-bold">{{list.totalsUnit}}</td>
-        <td/>
-      </tr>
-      <tr>
-        <th class="text-right va-middle">Total</th>
-        <td class="text-right font-weight-bold va-middle">{{totalWeight}}</td>
-        <td>
-          <select
-            class="form-control form-control-sm"
-            v-model="list.totalsUnit"
-            @change="updateList"
-            >
-            <option value="g">g</option>
-            <option value="kg">kg</option>
-            <option value="oz">oz</option>
-            <option value="lb">lb</option>
-          </select>
-        </td>
-        <td/>
-      </tr>
-    </tfoot>
-  </table>
-
+  <div class="col-xl-3 col-12 float-xl-right pt-3 bg-white"
+       id="statsTable"
+       :class="{ 'sticky-top': isStickyTop ,
+                 'shadow-sm' : isStickyTop ,
+                 'rounded'   : isStickyTop ,
+                 'stats'     : isStickyTop }">
+    <table class="table table-respsonsive table-sm table-striped">
+      <thead>
+        <tr class="table-info">
+          <th class="w-100">Category
+            <button class="feather-button"
+                    title="Add new category"
+                    @click="addNewCategory">
+              <plus-circle-icon class="feather"></plus-circle-icon>
+            </button>
+          </th>
+          <th colspan="2">
+            Weight
+          </th>
+          <th>
+            <button class="feather-button sticky-button"
+                    title="Make stats stick to the top"
+                    v-show="!isStickyTop"
+                    @click="isStickyTop = true">
+              <UnlockIcon class="feather"></UnlockIcon></button>
+            <button class="feather-button sticky-button"
+                    title="Release sticky stats"
+                    v-show="isStickyTop"
+                    @click="isStickyTop = false">
+              <LockIcon class="feather"></LockIcon></button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(category, idx) in categories"
+            :key="idx">
+          <td><a :href="'#cat-' + list._id + idx">{{category.name?  category.name : "Unnamed"}}</a></td>
+          <td class="text-right font-weight-bold">
+            {{ convertToTotalsUnit(categoryWeight(category, () => true)) }}
+          </td>
+          <td class="font-weight-bold ">{{list.totalsUnit}}</td>
+          <td class="">
+            <button class="feather-button delete-button"
+                    title="Delete category"
+                    @click="deleteCategory(idx)">
+              <x-circle-icon class="feather"></x-circle-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="text-right">Worn</th>
+          <td class="text-right font-weight-bold">{{wornWeight}}</td>
+          <td class="font-weight-bold">{{list.totalsUnit}}</td>
+          <td/>
+        </tr>
+        <tr>
+          <th class="text-right">Consumables</th>
+          <td class="text-right font-weight-bold">{{consumableWeight}}</td>
+          <td class="font-weight-bold">{{list.totalsUnit}}</td>
+          <td/>
+        </tr>
+        <tr class="table-primary">
+          <th class="text-right">Base Weight</th>
+          <td class="text-right font-weight-bold">{{baseWeight}}</td>
+          <td class="font-weight-bold">{{list.totalsUnit}}</td>
+          <td/>
+        </tr>
+        <tr>
+          <th class="text-right">Packed</th>
+          <td class="text-right font-weight-bold">{{packedWeight}}</td>
+          <td class="font-weight-bold">{{list.totalsUnit}}</td>
+          <td/>
+        </tr>
+        <tr>
+          <th class="text-right va-middle">Total</th>
+          <td class="text-right font-weight-bold va-middle">{{totalWeight}}</td>
+          <td>
+            <select class="form-control form-control-sm"
+                    v-model="list.totalsUnit"
+                    @change="updateList">
+              <option value="g">g</option>
+              <option value="kg">kg</option>
+              <option value="oz">oz</option>
+              <option value="lb">lb</option>
+            </select>
+          </td>
+          <td/>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
   <GearListCategory
     v-for="(category, idx) in categories"
     :key="idx"
@@ -218,8 +222,21 @@ h1.h2 input {
   border-color: #fff;
 }
 
-.stats-table {
+.stats {
   top: 4rem;
+}
+
+@media (min-width: 1200px) {
+  @supports ((position: -webkit-sticky) or (position: sticky)) {
+    #statsTable {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 4rem;
+    }
+    .sticky-button {
+      visibility: hidden;
+    }
+  }
 }
 
 .va-middle {
