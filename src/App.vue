@@ -245,11 +245,19 @@ body {
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
 
-.feather.delete-icon:hover {
-  stroke: red;
+.delete-button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
 }
 
-a:focus > .feather.delete-icon {
+.delete-button:hover {
+  cursor: pointer;
+}
+
+.delete-button:hover .feather,
+.delete-button:focus .feather {
   stroke: red;
 }
 </style>

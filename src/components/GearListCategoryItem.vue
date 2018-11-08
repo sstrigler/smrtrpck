@@ -64,12 +64,11 @@
       </select>
     </td>
     <td>
-      <a class="d-flex align-items-center text-muted"
-         href="#"
+      <button class="delete-button"
          title="Delete item"
          @click.prevent="deleteItem">
-        <x-circle-icon class="feather delete-icon"></x-circle-icon>
-      </a>
+        <x-circle-icon class="feather"></x-circle-icon>
+      </button>
     </td>
   </tr>
 </template>
