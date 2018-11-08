@@ -43,10 +43,9 @@
       </tr>
     </tfoot>
   </table>
-  <div class="d-flex justify-content-between">
-    <button
-      class="btn btn-primary"
-      @click="addNewItem">Add new item</button>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary"
+            @click="addNewItem">Add new item</button>
   </div>
 </div>
 </template>
