@@ -123,6 +123,7 @@
     :totalsUnit="list.totalsUnit"
     :cat_id="list._id + idx"
     @categoryUpdated="updateList"
+    @move="moveItem"
     />
 </div>
 </template>
@@ -174,6 +175,19 @@ export default {
     },
     deleteList () {
       this.$emit('deleteList', this.list)
+    },
+    moveItem (dir, category, item) {
+      const amount = dir === 'up' ? -1 : 1
+      const idx = this.categories.indexOf(category)
+      const newIdx = idx + amount
+      if (newIdx >= 0 && newIdx < this.categories.length) {
+        category.items.splice(category.items.indexOf(item), 1)
+        if (dir === 'up') {
+          this.categories[newIdx].items.push(item)
+        } else {
+          this.categories[newIdx].items.splice(0, 0, item)
+        }
+      }
     },
     updateList () {
       this.list.categories = this.categories // re-assign, see above

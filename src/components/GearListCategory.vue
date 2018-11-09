@@ -98,7 +98,11 @@ export default {
     moveItem (amount, item) {
       const idx = this.category.items.indexOf(item)
       const newIdx = idx + amount
-      if (newIdx >= 0 && newIdx < this.category.items.length) {
+      if (newIdx < 0) {
+        this.$emit('move', 'up', this.category, item)
+      } else if (newIdx >= this.category.items.length) {
+        this.$emit('move', 'down', this.category, item)
+      } else {
         this.category.items.splice(newIdx, 0, this.category.items.splice(idx, 1)[0])
       }
     },
