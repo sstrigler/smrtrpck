@@ -1,5 +1,13 @@
 <template>
   <tr class="form-group">
+    <td class="p-0 px-1">
+      <button class="feather-button"
+              @click="move('up')">
+        <ChevronUpIcon class="feather"></ChevronUpIcon></button>
+      <button class="feather-button"
+              @click="move('down')">
+        <ChevronDownIcon class="feather"></ChevronDownIcon></button>
+    </td>
     <td>
       <input type="text"
              class="form-control form-control-sm"
@@ -66,11 +74,13 @@
 </template>
 
 <script>
-import { XCircle } from 'vue-feather-icon'
+import { XCircle, ChevronUp, ChevronDown } from 'vue-feather-icon'
 
 export default {
   components: {
-    XCircleIcon: XCircle.default
+    XCircleIcon: XCircle.default,
+    ChevronUpIcon: ChevronUp.default,
+    ChevronDownIcon: ChevronDown.default
   },
   mounted () {
     this.$el.children[0].children[0].focus()
@@ -78,6 +88,9 @@ export default {
   methods: {
     deleteItem () {
       this.$emit('deleteItem')
+    },
+    move (dir) {
+      this.$emit('move:' + dir, this.item)
     },
     updateItem () {
       this.$emit('itemUpdated')

@@ -14,6 +14,7 @@
   <table class="category-table table table-sm table-responsive table-striped mb-0">
     <thead class="thead-dark">
       <tr>
+        <th/>
         <th style="width: 30%; min-width: 6rem;">Name</th>
         <th style="width: 70%; min-width: 10rem;">Description</th>
         <th colspan="2">Weight</th>
@@ -27,12 +28,14 @@
         v-for="(item, idx) in category.items"
         :key="idx"
         :item="item"
+        @move:up="moveItem(-1, $event)"
+        @move:down="moveItem(1, $event)"
         @deleteItem="deleteItem(idx)"
         @itemUpdated="updateCategory"/>
       </tbody>
     <tfoot>
       <tr>
-        <th colspan="2">
+        <th colspan="3">
           Total
         </th>
         <td>{{totalWeight}}</td>
@@ -91,6 +94,13 @@ export default {
     deleteItem (idx) {
       this.category.items.splice(idx, 1)
       this.$emit('categoryUpdated')
+    },
+    moveItem (amount, item) {
+      const idx = this.category.items.indexOf(item)
+      const newIdx = idx + amount
+      if (newIdx >= 0 && newIdx < this.category.items.length) {
+        this.category.items.splice(newIdx, 0, this.category.items.splice(idx, 1)[0])
+      }
     },
     updateCategory () {
       this.$emit('categoryUpdated')
