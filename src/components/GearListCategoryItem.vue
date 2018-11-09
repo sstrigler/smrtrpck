@@ -85,7 +85,7 @@ export default {
     ChevronDownIcon: ChevronDown.default
   },
   mounted () {
-    this.$el.children[0].children[0].focus()
+    this.$el.children[1].children[0].focus()
   },
   methods: {
     deleteItem () {
