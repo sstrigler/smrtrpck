@@ -23,7 +23,7 @@
     <button class="btn btn-danger"
             @click="deleteList">Delete list</button>
   </div>
-  <div class="col-xl-3 col-12 float-xl-right pt-3 bg-white p-0 m-0"
+  <div class="col-xl-3 col-12 float-xl-right mt-xl-5 bg-white p-0 m-0"
        id="statsTable"
        :class="{ 'sticky-top': isStickyTop ,
                  'shadow-sm' : isStickyTop ,
@@ -227,6 +227,11 @@ h1.h2 input {
 }
 
 @media (min-width: 1200px) {
+
+  #statsTable table{
+    margin-top: -2px;
+  }
+
   @supports ((position: -webkit-sticky) or (position: sticky)) {
     #statsTable {
       position: -webkit-sticky;
