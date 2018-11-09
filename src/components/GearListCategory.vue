@@ -11,7 +11,7 @@
            @change="updateCategory"
            />
   </h2>
-  <table class="table table-sm table-responsive table-striped mb-0">
+  <table class="category-table table table-sm table-responsive table-striped mb-0">
     <thead class="thead-dark">
       <tr>
         <th style="width: 30%; min-width: 6rem;">Name</th>
@@ -129,7 +129,7 @@ h2 input {
   border-color: #fff !important;
 }
 
-tfoot td, tfoot th {
+.category-table tfoot td, .category-table tfoot th {
   font-weight:bold;
   text-align:right;
 }
