@@ -32,6 +32,7 @@
     <table class="table table-respsonsive table-sm table-striped">
       <thead>
         <tr class="table-info">
+          <th/>
           <th class="w-100">Category
             <button class="feather-button"
                     title="Add new category"
@@ -59,6 +60,16 @@
       <tbody>
         <tr v-for="(category, idx) in categories"
             :key="idx">
+          <td class="p-0 text-nowrap">
+            <button class="feather-button chevron"
+                    title="Move category up"
+                    @click="moveCategory(-1, idx)">
+              <ChevronUpIcon class="feather"></ChevronUpIcon></button>
+            <button class="feather-button chevron"
+                    title="Move category down"
+                    @click="moveCategory(1, idx)">
+              <ChevronDownIcon class="feather"></ChevronDownIcon></button>
+          </td>
           <td><a :href="'#cat-' + list._id + idx">{{category.name?  category.name : "Unnamed"}}</a></td>
           <td class="text-right font-weight-bold">
             {{ convertToTotalsUnit(categoryWeight(category, () => true)) }}
@@ -75,30 +86,35 @@
       </tbody>
       <tfoot>
         <tr class="table-primary">
+          <th/>
           <th class="text-right">Base Weight</th>
           <td class="text-right font-weight-bold">{{baseWeight}}</td>
           <td class="font-weight-bold">{{list.totalsUnit}}</td>
           <td/>
         </tr>
         <tr>
+          <th/>
           <th class="text-right">Worn</th>
           <td class="text-right font-weight-bold">{{wornWeight}}</td>
           <td class="font-weight-bold">{{list.totalsUnit}}</td>
           <td/>
         </tr>
         <tr>
+          <th/>
           <th class="text-right">Consumables</th>
           <td class="text-right font-weight-bold">{{consumableWeight}}</td>
           <td class="font-weight-bold">{{list.totalsUnit}}</td>
           <td/>
         </tr>
         <tr>
+          <th/>
           <th class="text-right">Packed</th>
           <td class="text-right font-weight-bold">{{packedWeight}}</td>
           <td class="font-weight-bold">{{list.totalsUnit}}</td>
           <td/>
         </tr>
         <tr>
+          <th/>
           <th class="text-right va-middle">Total</th>
           <td class="text-right font-weight-bold va-middle">{{totalWeight}}</td>
           <td>
@@ -130,7 +146,7 @@
 
 <script>
 import GearListCategory from './GearListCategory.vue'
-import { PlusCircle, XCircle, Lock, Unlock } from 'vue-feather-icon'
+import { PlusCircle, XCircle, Lock, Unlock, ChevronUp, ChevronDown } from 'vue-feather-icon'
 
 export default {
   components: {
@@ -138,7 +154,9 @@ export default {
     LockIcon: Lock.default,
     PlusCircleIcon: PlusCircle.default,
     UnlockIcon: Unlock.default,
-    XCircleIcon: XCircle.default
+    XCircleIcon: XCircle.default,
+    ChevronUpIcon: ChevronUp.default,
+    ChevronDownIcon: ChevronDown.default
   },
   computed: {
     wornWeight: function () { return this.calcWeight((item) => item.type === 'worn') },
@@ -175,6 +193,13 @@ export default {
     },
     deleteList () {
       this.$emit('deleteList', this.list)
+    },
+    moveCategory (amount, categoryIdx) {
+      const newIdx = categoryIdx + amount
+      if (newIdx >= 0 && newIdx < this.categories.length) {
+        this.categories.splice(newIdx, 0, this.categories.splice(categoryIdx, 1)[0])
+        this.updateList()
+      }
     },
     moveItem (dir, category, item) {
       const amount = dir === 'up' ? -1 : 1
@@ -239,6 +264,10 @@ h1.h2 input {
 
 .stats {
   top: 4rem;
+}
+
+#statsTable .chevron .feather {
+  width: 12px;
 }
 
 @media (max-width:768px) {
