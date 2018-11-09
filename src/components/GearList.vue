@@ -226,6 +226,12 @@ h1.h2 input {
   top: 4rem;
 }
 
+@media (max-width:768px) {
+  .stats {
+    top: 5rem;
+  }
+}
+
 @media (min-width: 1200px) {
 
   #statsTable table{
