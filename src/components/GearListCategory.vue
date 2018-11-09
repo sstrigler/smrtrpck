@@ -1,5 +1,5 @@
 <template>
-<div class="col-xl-9 col-12">
+<div class="col-xl-9 col-12 p-0 m-0 pr-lg-3">
   <h2 class="h2">
     <a :id="'cat-' + cat_id" class="anchor"></a>
     <input type="text"
