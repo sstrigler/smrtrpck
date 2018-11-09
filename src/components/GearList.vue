@@ -74,6 +74,12 @@
         </tr>
       </tbody>
       <tfoot>
+        <tr class="table-primary">
+          <th class="text-right">Base Weight</th>
+          <td class="text-right font-weight-bold">{{baseWeight}}</td>
+          <td class="font-weight-bold">{{list.totalsUnit}}</td>
+          <td/>
+        </tr>
         <tr>
           <th class="text-right">Worn</th>
           <td class="text-right font-weight-bold">{{wornWeight}}</td>
@@ -83,12 +89,6 @@
         <tr>
           <th class="text-right">Consumables</th>
           <td class="text-right font-weight-bold">{{consumableWeight}}</td>
-          <td class="font-weight-bold">{{list.totalsUnit}}</td>
-          <td/>
-        </tr>
-        <tr class="table-primary">
-          <th class="text-right">Base Weight</th>
-          <td class="text-right font-weight-bold">{{baseWeight}}</td>
           <td class="font-weight-bold">{{list.totalsUnit}}</td>
           <td/>
         </tr>
