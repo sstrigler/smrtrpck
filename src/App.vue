@@ -195,8 +195,8 @@ body {
 .sidebar {
   position: fixed;
   left: -100%;
-  -webkit-transition: left 0.3s; /* Safari */
-  transition: left 0.5s;
+  -webkit-transition: left 0.2s; /* Safari */
+  transition: left 0.2s;
   top: 0;
   bottom: 0;
   z-index: 100; /* Behind the navbar */
