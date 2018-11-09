@@ -32,12 +32,12 @@
       </tbody>
     <tfoot>
       <tr>
-        <th class="text-right" colspan="2">
+        <th colspan="2">
           Total
         </th>
-        <td class="sum text-right">{{totalWeight}}</td>
-        <td class="bold">{{totalsUnit}}</td>
-        <td class="sum text-right">{{totalQty}}</td>
+        <td>{{totalWeight}}</td>
+        <td class="text-left">{{totalsUnit}}</td>
+        <td class="pr-4">{{totalQty}}</td>
         <td />
         <td/>
       </tr>
@@ -129,8 +129,8 @@ h2 input {
   border-color: #fff !important;
 }
 
-tfoot td.sum {
+tfoot td, tfoot th {
   font-weight:bold;
-  padding-right: 1.5rem;
+  text-align:right;
 }
 </style>
