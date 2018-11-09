@@ -104,6 +104,7 @@ export default {
         this.$emit('move', 'down', this.category, item)
       } else {
         this.category.items.splice(newIdx, 0, this.category.items.splice(idx, 1)[0])
+        this.$emit('categoryUpdated')
       }
     },
     updateCategory () {

@@ -187,6 +187,7 @@ export default {
         } else {
           this.categories[newIdx].items.splice(0, 0, item)
         }
+        this.updateList()
       }
     },
     updateList () {
