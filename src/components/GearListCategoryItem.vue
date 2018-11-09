@@ -2,9 +2,11 @@
   <tr class="form-group">
     <td class="p-0 px-1">
       <button class="feather-button"
+              title="Move item up"
               @click="move('up')">
         <ChevronUpIcon class="feather"></ChevronUpIcon></button>
       <button class="feather-button"
+              title="Move item down"
               @click="move('down')">
         <ChevronDownIcon class="feather"></ChevronDownIcon></button>
     </td>
