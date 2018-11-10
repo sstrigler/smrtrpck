@@ -150,7 +150,7 @@ a:focus {
 }
 
 a:hover {
-  color: #256537;
+  color: #000;
 }
 
 body {
@@ -180,7 +180,7 @@ body {
 }
 
 .feather-button:hover .feather {
-  stroke: #256537;
+  stroke: #000;
 }
 
 .delete-button:hover .feather,
@@ -252,6 +252,7 @@ body {
 .sidebar .nav-link.active,
 .sidebar .nav-link:hover {
   text-decoration: underline;
+  color: #000;
 }
 
 .sidebar .nav-link:hover .feather,
