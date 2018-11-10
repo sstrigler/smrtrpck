@@ -43,12 +43,12 @@
           </th>
           <th>
             <button class="feather-button sticky-button"
-                    title="Make stats stick to the top"
+                    title="Make overview stick to the top"
                     v-show="!isStickyTop"
                     @click="isStickyTop = true">
               <UnlockIcon class="feather"></UnlockIcon></button>
             <button class="feather-button sticky-button"
-                    title="Release sticky stats"
+                    title="Release sticky overview"
                     v-show="isStickyTop"
                     @click="isStickyTop = false">
               <LockIcon class="feather"></LockIcon></button>
