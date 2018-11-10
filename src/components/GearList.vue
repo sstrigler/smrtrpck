@@ -20,8 +20,6 @@
         Versions
       </button>
     </div-->
-    <button class="btn btn-danger"
-            @click="deleteList">Delete list</button>
   </div>
   <div class="col-xl-3 col-12 float-xl-right mt-xl-5 bg-white p-0 m-0"
        id="statsTable"
@@ -190,9 +188,6 @@ export default {
     deleteCategory (idx) {
       this.categories.splice(idx, 1)
       this.updateList()
-    },
-    deleteList () {
-      this.$emit('deleteList', this.list)
     },
     moveCategory (amount, categoryIdx) {
       const newIdx = categoryIdx + amount

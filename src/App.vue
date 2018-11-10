@@ -40,7 +40,13 @@
                :class="{ active: currentList === idx }"
                href="#"
                @click.prevent="setCurrentList(idx)">
-              <FileTextIcon class="feather"></FileTextIcon>{{list.name}}
+              <FileTextIcon class="feather mr-1"></FileTextIcon>{{list.name}}
+              <button
+                class="feather-button delete-button float-right"
+                title="Delete list"
+                v-show="currentList != idx"
+                @click.stop="deleteList(idx)"
+                ><MinusCircleIcon class="feather"></MinusCircleIcon></button>
             </a>
           </li>
         </ul>
@@ -67,13 +73,14 @@
 
 <script>
 import GearList from './components/GearList.vue'
-import { Menu, PlusCircle, FileText } from 'vue-feather-icon'
+import { Menu, PlusCircle, MinusCircle, FileText } from 'vue-feather-icon'
 
 export default {
   components: {
     GearList,
     MenuIcon: Menu.default,
     PlusCircleIcon: PlusCircle.default,
+    MinusCircleIcon: MinusCircle.default,
     FileTextIcon: FileText.default
   },
   created: function () {
@@ -110,11 +117,12 @@ export default {
         }
       )
     },
-    deleteList (list) {
-      const idx = this.lists.indexOf(list)
-      this.gearListStore.remove(list).then(() => {
+    deleteList (idx) {
+      this.gearListStore.remove(this.lists[idx]).then(() => {
         this.lists.splice(idx, 1)
-        this.setCurrentList(0)
+        if (idx < this.currentList) {
+          this.setCurrentList(this.currentList -1)
+        }
       })
     },
     listMounted (list) {
@@ -160,7 +168,6 @@ body {
 .feather {
   width: 16px;
   height: 16px;
-  vertical-align: text-bottom;
   stroke: #999;
 }
 
@@ -242,11 +249,6 @@ body {
 .sidebar .nav-link {
   font-weight: 500;
   color: #256537;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #999;
 }
 
 .sidebar .nav-link.active,
