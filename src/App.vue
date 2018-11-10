@@ -121,7 +121,7 @@ export default {
       this.gearListStore.remove(this.lists[idx]).then(() => {
         this.lists.splice(idx, 1)
         if (idx < this.currentList) {
-          this.setCurrentList(this.currentList -1)
+          this.setCurrentList(this.currentList - 1)
         }
       })
     },
