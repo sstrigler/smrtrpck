@@ -25,7 +25,7 @@
     </thead>
     <tbody>
       <GearListCategoryItem
-        v-for="(item, idx) in category.items"
+        v-for="(item, idx) in categoryItems"
         :key="idx"
         :item="item"
         @move:up="moveItem(-1, $event)"
@@ -55,6 +55,7 @@
 
 <script>
 import GearListCategoryItem from './GearListCategoryItem.vue'
+import uuidv4 from 'uuid/v4'
 
 export default {
   components: {
@@ -81,15 +82,16 @@ export default {
       }
 
       return convertToTotalsUnit(
-        this.category.items.reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0))
+        this.categoryItems.reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0))
     },
     totalQty () {
-      return this.category.items.reduce((sum, item) => sum + item.qty, 0)
+      return this.categoryItems.reduce((sum, item) => sum + item.qty, 0)
     }
   },
   methods: {
     addNewItem () {
-      this.category.items.push({ weight: 0, qty: 1, unit: 'g', type: '' })
+      const uuid = uuidv4()
+      this.$emit('addItem', this.category, { uuid: uuid, weight: 0, qty: 1, unit: 'g', type: '' })
     },
     deleteItem (idx) {
       this.category.items.splice(idx, 1)
@@ -117,6 +119,10 @@ export default {
   props: {
     category: {
       type: Object,
+      required: true
+    },
+    categoryItems: {
+      type: Array,
       required: true
     },
     totalsUnit: {

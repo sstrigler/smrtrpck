@@ -50,19 +50,29 @@
           </li>
         </ul>
 
-        <!--h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Inventory</span>
           <a class="d-flex align-items-center text-muted" href="#">
             <span data-feather="plus-circle"></span>
           </a>
         </h6>
-        <Inventory/-->
+        <ul class="nav flex-column mb-2">
+          <li
+            class="nav-item"
+            v-for="(item, uuid) in inventory.gearItems"
+            :key="item.uuid">
+            <a class="nav-link">{{item.name}}</a>
+            {{uuid}}
+          </li>
+        </ul>
       </div>
     </nav>
     <main role="main" class="col-md-10 px-0 px-md-2">
       <GearList v-for="list in lists"
                 :key="list._id"
                 :list="list"
+                :gearItems="inventory.gearItems"
+                @gearItemsUpdated="updateInventory"
                 @listMounted="listMounted"
                 @deleteList="deleteList"/>
     </main>
@@ -73,6 +83,7 @@
 <script>
 import GearList from './components/GearList.vue'
 import { Menu, PlusCircle, MinusCircle, FileText } from 'vue-feather-icon'
+import uuidv4 from 'uuid/v4'
 
 export default {
   components: {
@@ -83,25 +94,26 @@ export default {
     FileTextIcon: FileText.default
   },
   created: function () {
-    this.gearListStore = this.$hoodie.store.withIdPrefix('gearList')
-    this.$hoodie.store.find({ _id: 'smrtrpck' }).then(
-      smrtrpck => {
+    this.$hoodie.store.findOrAdd([this.smrtrpck, this.inventory]).then(
+      ([smrtrpck, inventory]) => {
+        console.log(inventory.gearItems)
         this.smrtrpck = smrtrpck
+        this.inventory = inventory
         this.gearListStore.findAll().then(
           lists => {
+            lists = this.initInventory(lists)
             this.lists = lists
             if (this.lists.length === 0) this.addNewList()
           })
       }
-    ).catch(() => {
-      this.$hoodie.store.add(this.smrtrpck).then(
-        () => this.addNewList())
-    })
+    )
   },
   data: function () {
     return {
-      lists: [],
       currentList: null,
+      gearListStore: this.$hoodie.store.withIdPrefix('gearList'),
+      inventory: { _id: 'inventory', gearItems: {} },
+      lists: [],
       menuActive: false,
       smrtrpck: { _id: 'smrtrpck', lastList: 0 }
     }
@@ -124,6 +136,29 @@ export default {
         }
       })
     },
+    initInventory (lists) {
+      if (this.inventory.gearItems.length !== 0) return lists
+      let gearItems = {}
+      lists.forEach(
+        list => list.categories.forEach(
+          category => category.items.map(
+            item => {
+              const uuid = uuidv4()
+              gearItems[uuid] = { name: item.name,
+                description: item.description,
+                weight: item.weight,
+                unit: item.unit,
+                type: item.type }
+              item.uuid = uuid
+              return item
+            }
+          )
+        )
+      )
+      this.inventory.gearItems = gearItems
+      this.updateInventory()
+      return lists
+    },
     listMounted (list) {
       const idx = this.lists.indexOf(list)
       if (idx === this.smrtrpck.lastList) {
@@ -142,6 +177,9 @@ export default {
         this.smrtrpck.lastList = idx
         this.$hoodie.store.update(this.smrtrpck)
       }
+    },
+    updateInventory () {
+      this.$hoodie.store.update(this.inventory)
     }
   }
 }

@@ -70,7 +70,7 @@
           </td>
           <td><a :href="'#cat-' + list._id + idx">{{category.name?  category.name : "Unnamed"}}</a></td>
           <td class="text-right font-weight-bold">
-            {{ convertToTotalsUnit(categoryWeight(category, () => true)) }}
+            {{ convertToTotalsUnit(itemsWeight(category.items, () => true)) }}
           </td>
           <td class="font-weight-bold ">{{list.totalsUnit}}</td>
           <td class="">
@@ -134,8 +134,10 @@
     v-for="(category, idx) in categories"
     :key="idx"
     :category="category"
+    :categoryItems="aggregatedItems(category.items)"
     :totalsUnit="list.totalsUnit"
     :cat_id="list._id + idx"
+    @addItem="addItem"
     @categoryUpdated="updateList"
     @move="moveItem"
     />
@@ -176,14 +178,31 @@ export default {
     }
   },
   props: {
+    gearItems: {
+      type: Object,
+      required: true
+    },
     list: {
       type: Object,
       required: true
     }
   },
   methods: {
+    addItem (category, item) {
+      if (item.uuid) {
+        //this.$emit("newGearItem", item)
+        //this.categories[this.categories.indexOf(category)].items.push(item)
+      }
+    },
     addNewCategory () {
       this.categories.push({ items: [] })
+    },
+    aggregatedItems (items) {
+      return items.reduce(
+        (acc, item) => {
+          acc.push(item.uuid ? Object.assign({}, item, this.gearItems[item.uuid]) : { ...item })
+          return acc
+        }, [])
     },
     deleteCategory (idx) {
       this.categories.splice(idx, 1)
@@ -214,7 +233,7 @@ export default {
       this.list.categories = this.categories // re-assign, see above
       this.gearListStore.updateOrAdd(this.list)
     },
-    categoryWeight (category, filter) {
+    itemsWeight (items, filter) {
       const toGrams = (weight, unit) => {
         switch (unit) {
           case 'kg': return weight * 1000
@@ -223,7 +242,7 @@ export default {
           default: return weight
         }
       }
-      return category.items.filter(filter).reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0)
+      return items.filter(filter).reduce((sum, item) => sum + item.qty * toGrams(item.weight, item.unit), 0)
     },
     convertToTotalsUnit (weight) {
       switch (this.list.totalsUnit) {
@@ -235,7 +254,9 @@ export default {
     },
     calcWeight (filter) {
       return this.convertToTotalsUnit(
-        this.categories.reduce((sum, category) => sum + this.categoryWeight(category, filter), 0))
+        this.categories.reduce(
+          (sum, category) => sum + this.itemsWeight(this.aggregatedItems(category.items), filter),
+          0))
     }
   },
   created () {

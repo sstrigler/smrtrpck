@@ -14,6 +14,7 @@
     "hoodie": "^28.2.6",
     "pouchdb": "^7.0.0",
     "register-service-worker": "^1.0.0",
+    "uuid": "^3.3.2",
     "vue": "^2.5.17",
     "vue-feather-icon": "^1.2.0",
     "vue-hoodie": "git+https://github.com/SergeyRyzhov/vue-hoodie.git"
