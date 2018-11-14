@@ -5,7 +5,7 @@
       <button class="btn btn-outline-dark mr-2 d-md-none"
               title="Expand menu"
               @click="menuActive = !menuActive">
-        <MenuIcon class="feather"></MenuIcon>
+        <MenuIcon class="feather"/>
       </button>
       <a href="#">smrtrpck</a>
     </div>
@@ -24,11 +24,10 @@
 
         <h6 class="sidebar-heading d-flex justify-content-start align-items-center px-3 mt-4 mb-1 text-muted">
           Lists
-          &nbsp;
-          <button class="feather-button"
+          <button class="feather-button ml-1"
                   title="Add new list"
                   @click="addNewList">
-            <plus-circle-icon class="feather"></plus-circle-icon>
+            <PlusCircleIcon class="feather"/>
           </button>
         </h6>
         <ul class="nav flex-column mb-2">
@@ -40,12 +39,12 @@
                :class="{ active: currentList === idx }"
                href="#"
                @click.prevent="setCurrentList(idx)">
-              <FileTextIcon class="feather mr-1"></FileTextIcon>{{list.name}}
+              <FileTextIcon class="feather mr-1"/>{{list.name}}
               <button
                 class="feather-button delete-button float-right"
                 title="Delete list"
                 @click.stop="deleteList(idx)"
-                ><MinusCircleIcon class="feather"></MinusCircleIcon></button>
+                ><MinusCircleIcon class="feather"/></button>
             </a>
           </li>
         </ul>

@@ -32,7 +32,7 @@
         <tr class="table-info">
           <th/>
           <th class="w-100">Category
-            <button class="feather-button"
+            <button class="feather-button ml-1"
                     title="Add new category"
                     @click="addNewCategory">
               <plus-circle-icon class="feather"></plus-circle-icon>
