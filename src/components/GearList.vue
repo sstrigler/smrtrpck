@@ -273,7 +273,7 @@ h1.h2 input {
 
 @media (min-width: 1200px) {
 
-  #statsTable table{
+  #statsTable table {
     margin-top: -2px;
   }
 
