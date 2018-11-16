@@ -328,6 +328,14 @@ body {
     margin: 0px -16px;
   }
 
+  .sidebar {
+    padding-top: 0px;
+  }
+
+  .sidebar-sticky {
+    top: 0px;
+  }
+
   [role="main"] {
     padding-top: 0px; /* No more space for fixed navbar */
   }
