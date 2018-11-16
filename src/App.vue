@@ -340,4 +340,11 @@ body {
     padding-top: 0px; /* No more space for fixed navbar */
   }
 }
+
+@media (max-height: 414px) and (max-width: 768px) {
+  .sidebar-sticky {
+    top: 48px;
+  }
+}
+
 </style>
