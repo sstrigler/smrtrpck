@@ -4,6 +4,7 @@
     <div class="navbar-brand col-sm-3 col-md-2 mr-0">
       <button class="btn btn-outline-dark mr-2 d-md-none"
               title="Expand menu"
+              id="menu-button"
               @click="menuActive = !menuActive">
         <MenuIcon class="feather"/>
       </button>
@@ -293,8 +294,15 @@ body {
   text-decoration: none;
 }
 
-.navbar-brand .feather {
-  stroke: #fff
+#menu-button {
+  line-height: 0.5rem;
+  padding: 5px 6px;
+}
+
+#menu-button .feather {
+  stroke: #fff;
+  width: 12px;
+  height: 12px;
 }
 
 .navbar .form-control {
@@ -312,5 +320,16 @@ body {
 .form-control-dark:focus {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+@media (max-height: 414px) {
+  .navbar {
+    position: relative;
+    margin: 0px -16px;
+  }
+
+  [role="main"] {
+    padding-top: 0px; /* No more space for fixed navbar */
+  }
 }
 </style>

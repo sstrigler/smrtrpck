@@ -265,9 +265,9 @@ h1.h2 input {
   width: 12px;
 }
 
-@media (max-width:768px) {
+@media (max-height: 414px) {
   .stats {
-    top: 5rem;
+    top: 1rem;
   }
 }
 
