@@ -138,7 +138,7 @@
     :totalsUnit="list.totalsUnit"
     :cat_id="list._id + idx"
     @addItem="addItem"
-    @categoryUpdated="updateList"
+    @categoryUpdated="updateCategory(idx, $event)"
     @move="moveItem"
     />
 </div>
@@ -190,8 +190,8 @@ export default {
   methods: {
     addItem (category, item) {
       if (item.uuid) {
-        //this.$emit("newGearItem", item)
-        //this.categories[this.categories.indexOf(category)].items.push(item)
+        this.$emit('newGearItem', item)
+        this.categories[this.categories.indexOf(category)].items.push(item)
       }
     },
     addNewCategory () {
@@ -228,6 +228,10 @@ export default {
         }
         this.updateList()
       }
+    },
+    updateCategory (idx, category) {
+      this.categories.splice(idx, 1, category)
+      this.updateList()
     },
     updateList () {
       this.list.categories = this.categories // re-assign, see above

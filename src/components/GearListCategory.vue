@@ -31,7 +31,7 @@
         @move:up="moveItem(-1, $event)"
         @move:down="moveItem(1, $event)"
         @deleteItem="deleteItem(idx)"
-        @itemUpdated="updateCategory"/>
+        @itemUpdated="updateItem(idx, $event)"/>
       </tbody>
     <tfoot>
       <tr>
@@ -95,7 +95,7 @@ export default {
     },
     deleteItem (idx) {
       this.category.items.splice(idx, 1)
-      this.$emit('categoryUpdated')
+      this.$emit('categoryUpdated', this.category)
     },
     moveItem (amount, item) {
       const idx = this.category.items.indexOf(item)
@@ -106,11 +106,16 @@ export default {
         this.$emit('move', 'down', this.category, item)
       } else {
         this.category.items.splice(newIdx, 0, this.category.items.splice(idx, 1)[0])
-        this.$emit('categoryUpdated')
+        this.$emit('categoryUpdated', this.category)
       }
     },
     updateCategory () {
-      this.$emit('categoryUpdated')
+      this.$emit('categoryUpdated', this.category)
+    },
+    updateItem (idx, item) {
+      this.categoryItems[idx] = item
+      this.category.items[idx] = item
+      this.$emit('categoryUpdated', this.category)
     }
   },
   mounted () {

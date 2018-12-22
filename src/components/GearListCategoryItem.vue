@@ -97,7 +97,7 @@ export default {
       this.$emit('move:' + dir, this.item)
     },
     updateItem () {
-      this.$emit('itemUpdated')
+      this.$emit('itemUpdated', this.item)
     }
   },
   props: {

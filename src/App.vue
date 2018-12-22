@@ -96,7 +96,6 @@ export default {
   created: function () {
     this.$hoodie.store.findOrAdd([this.smrtrpck, this.inventory]).then(
       ([smrtrpck, inventory]) => {
-        console.log(inventory.gearItems)
         this.smrtrpck = smrtrpck
         this.inventory = inventory
         this.gearListStore.findAll().then(
