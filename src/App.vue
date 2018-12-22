@@ -44,7 +44,6 @@
               <button
                 class="feather-button delete-button float-right"
                 title="Delete list"
-                v-show="currentList != idx"
                 @click.stop="deleteList(idx)"
                 ><MinusCircleIcon class="feather"></MinusCircleIcon></button>
             </a>
@@ -120,7 +119,7 @@ export default {
     deleteList (idx) {
       this.gearListStore.remove(this.lists[idx]).then(() => {
         this.lists.splice(idx, 1)
-        if (idx < this.currentList) {
+        if (idx <= this.currentList) {
           this.setCurrentList(this.currentList - 1)
         }
       })
