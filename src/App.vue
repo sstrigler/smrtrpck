@@ -131,6 +131,7 @@ export default {
       }
     },
     setCurrentList (idx) {
+      idx = idx < 0 ? 0 : idx
       this.currentList = idx
       this.$children.forEach(
         child => {
