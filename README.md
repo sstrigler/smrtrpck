@@ -10,11 +10,15 @@ Install yarn https://yarnpkg.com/en/docs/install
 
 On Mac using homebrew as easy as
 
+```
 $ brew install yarn
+```
 
 Or via npm
 
+```
 $ npm -g install yarn
+```
 
 For more options check https://yarnpkg.com/en/docs/install
 
