@@ -21,6 +21,6 @@ module.exports = {
   ],
   testURL: 'http://localhost/',
   transformIgnorePatterns: [
-    '^(node_modules/vue-feather-icon/)'
+    'node_modules/(?!(vue-feather-icon)/)'
   ]
 }
