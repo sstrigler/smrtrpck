@@ -89,7 +89,8 @@ export default {
   },
   methods: {
     addNewItem () {
-      this.category.items.push({ weight: 0, qty: 1, unit: 'g', type: '' })
+      console.log('addNewItem', this.category.items)
+      this.category.items.push({ name: 'wtf', weight: 0, qty: 1, unit: 'g', type: '' })
     },
     deleteItem (idx) {
       this.category.items.splice(idx, 1)

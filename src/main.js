@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import './plugins/bootstrap-vue'
+
 import App from './App.vue'
 import VueHoodie from 'vue-hoodie'
 

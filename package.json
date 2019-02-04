@@ -15,6 +15,7 @@
     "pouchdb": "^7.0.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
+    "vue-csv-import": "^2.3.3",
     "vue-feather-icon": "^1.2.0",
     "vue-hoodie": "git+https://github.com/SergeyRyzhov/vue-hoodie.git"
   },
