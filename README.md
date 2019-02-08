@@ -26,7 +26,9 @@ For more options check https://yarnpkg.com/en/docs/install
 
 https://cli.vuejs.org/guide/installation.html
 
+```
 $ yarn global add @vue/cli
+```
 
 ## Project setup
 ```
