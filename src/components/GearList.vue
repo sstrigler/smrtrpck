@@ -77,7 +77,7 @@
             <button class="feather-button delete-button"
                     title="Delete category"
                     @click="deleteCategory(idx)">
-              <x-circle-icon class="feather"></x-circle-icon>
+              <MinusCircleIcon class="feather"/>
             </button>
           </td>
         </tr>
@@ -144,7 +144,7 @@
 
 <script>
 import GearListCategory from './GearListCategory.vue'
-import { PlusCircle, XCircle, Lock, Unlock, ChevronUp, ChevronDown } from 'vue-feather-icon'
+import { PlusCircle, MinusCircle, Lock, Unlock, ChevronUp, ChevronDown } from 'vue-feather-icon'
 
 export default {
   components: {
@@ -152,7 +152,7 @@ export default {
     LockIcon: Lock.default,
     PlusCircleIcon: PlusCircle.default,
     UnlockIcon: Unlock.default,
-    XCircleIcon: XCircle.default,
+    MinusCircleIcon: MinusCircle.default,
     ChevronUpIcon: ChevronUp.default,
     ChevronDownIcon: ChevronDown.default
   },
