@@ -9,6 +9,7 @@
         <MenuIcon class="feather"/>
       </button>
       <a href="#">smrtrpck</a>
+
     </div>
     <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
@@ -24,12 +25,29 @@
       <div class="sidebar-sticky">
 
         <h6 class="sidebar-heading d-flex justify-content-start align-items-center px-3 mt-4 mb-1 text-muted">
+          <button @click="importNewList">
+            Debug
+          </button>
           Lists
           <button class="feather-button ml-1"
                   title="Add new list"
                   @click="addNewList">
             <PlusCircleIcon class="feather"/>
           </button>
+          &nbsp;
+            <b-btn v-b-modal.modal1 class="feather-button"
+                  title="Import new list">
+            <upload-icon class="feather" ></upload-icon></b-btn>
+
+  <!-- Modal Component -->
+  <b-modal id="modal1" title="Import new list">
+          <form class="form">
+            <vue-csv-import inputClass="importFileInput" finally="importNewList" v-model="importData" ref="importer" :map-fields="['name','category', 'description', 'qty', 'weight', 'unit', 'type']"></vue-csv-import>
+          </form>
+  </b-modal>
+<div>
+
+</div>
         </h6>
         <ul class="nav flex-column mb-2">
           <li
@@ -72,15 +90,18 @@
 
 <script>
 import GearList from './components/GearList.vue'
-import { Menu, PlusCircle, MinusCircle, FileText } from 'vue-feather-icon'
+import { Menu, PlusCircle, MinusCircle, FileText, Upload } from 'vue-feather-icon'
+import VueCsvImport from 'vue-csv-import'
 
 export default {
   components: {
     GearList,
     MenuIcon: Menu.default,
     PlusCircleIcon: PlusCircle.default,
+    UploadIcon: Upload.default,
     MinusCircleIcon: MinusCircle.default,
-    FileTextIcon: FileText.default
+    FileTextIcon: FileText.default,
+    VueCsvImport
   },
   created: function () {
     this.gearListStore = this.$hoodie.store.withIdPrefix('gearList')
@@ -103,6 +124,7 @@ export default {
       lists: [],
       currentList: null,
       menuActive: false,
+      importData: [],
       smrtrpck: { _id: 'smrtrpck', lastList: 0 }
     }
   },
@@ -115,6 +137,77 @@ export default {
           this.setCurrentList(this.lists.indexOf(list))
         }
       )
+    },
+    importNewList () {
+      var filename = 'New List'
+      if (this.$refs.importer.$refs.csv.files.length === 1) {
+        filename = this.$refs.importer.$refs.csv.files[0].name
+        filename = filename.replace('.csv', '')
+        filename = filename.replace('.CSV', '')
+      }
+      let importedList = { name: filename, totalsUnit: 'kg' }
+      importedList.categories = []
+      var lastCat
+      this.$data.importData.forEach(function (element) {
+        if (element.name === undefined || element.name === '') {
+          return
+        }
+        if (lastCat === undefined || lastCat.name !== element.category) {
+          lastCat = importedList.categories.find(function (el) {
+            return el.name === element.category
+          })
+          if (lastCat === undefined) {
+            lastCat = { name: element.category, items: [] }
+            importedList.categories.push(lastCat)
+          }
+        }
+        var importedItem = { name: element.name, description: element.description, weight: Number(element.weight), qty: Number(element.qty), unit: '', type: '' }
+        element.unit = element.unit.toLowerCase()
+        switch (element.unit) {
+          case 'gram':
+          case 'g' :
+            importedItem.unit = 'g'
+            break
+          case 'kilogram':
+          case 'kg':
+            importedItem.unit = 'kg'
+            break
+          case 'ounce':
+          case 'oz':
+            importedItem.unit = 'oz'
+            break
+          case 'pound':
+          case 'lb':
+            importedItem.unit = 'lb'
+            break
+        }
+        element.type = element.type.toLowerCase()
+        switch (element.type) {
+          case 'regular':
+          case 'r' :
+            importedItem.type = 'regular'
+            break
+          case 'worn':
+          case 'w':
+            importedItem.type = 'worn'
+            break
+          case 'consumable':
+          case 'c':
+            importedItem.type = 'consumable'
+            break
+        }
+        lastCat.items.push(importedItem)
+      })
+      this.gearListStore.add(importedList).then(
+        list => {
+          this.lists.push(list)
+          this.setCurrentList(this.lists.indexOf(list))
+        }
+      )
+    },
+    handleFileUpload () {
+      console.log(this.$refs.importer.$refs.csv.files)
+      // console.log(this.$refs.importer.$children)
     },
     deleteList (idx) {
       this.gearListStore.remove(this.lists[idx]).then(() => {
